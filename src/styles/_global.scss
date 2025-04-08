@@ -1,0 +1,32 @@
+/* -----------------------------------
+  global
+----------------------------------- */
+
+/* global > color
+----------------------------------- */
+:root {
+  --color-main: #72553f;
+  --color-base: #f7f4ed;
+  // --color-white: #fff;
+  // --color-camel: #c38841;
+}
+
+/* global > content-width
+----------------------------------- */
+:root {
+  --width-content: 1200px;
+  --width-content-s: 1000px;
+}
+
+/* global > content-width
+----------------------------------- */
+:root {
+  --vw-sp: / 375 * 100vw;
+  --vw-pc: / 1366 * 100vw;
+}
+
+/* global > font
+----------------------------------- */
+:root {
+  --font-family-base: "Shippori Mincho", serif;
+}

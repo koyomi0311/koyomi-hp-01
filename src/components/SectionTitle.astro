@@ -1,0 +1,97 @@
+---
+const { titleText } = Astro.props;
+---
+
+<div class="c-section-title">
+  <div class="c-section-title-dec"></div>
+  <h2 class="c-section-title-text">{titleText}</h2>
+  <div class="c-section-title-dec c-section-title-dec--right"></div>
+</div><!-- /.c-section-title -->
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .c-section-title {
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    margin: auto;
+  }
+
+  .c-section-title-text {
+    font-size: 16px;
+  }
+
+  .c-section-title-dec {
+    width: 10px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      background-color: var(--color-main);
+      width: inherit;
+      height: 1px;
+      position: absolute;
+    }
+
+    &::before {
+      top: 6px;
+      left: 0;
+    }
+
+    &::after {
+      rotate: 90deg;
+      top: 8px;
+      left: -1px;
+    }
+
+    &--right {
+      &::before {
+        top: calc(100% - 5px);
+      }
+
+      &::after {
+        top: calc(100% - 7px);
+        left: calc(100% - 8px);
+      }
+    }
+  }
+
+  @include mq() {
+    .c-section-title {
+      gap: 35px;
+    }
+
+    .c-section-title-text {
+      font-size: 20px;
+    }
+
+    .c-section-title-dec {
+      width: 15px;
+
+      &::before {
+        top: 4px;
+      }
+
+      &::after {
+        top: 7px;
+        left: -3px;
+      }
+
+      &--right {
+        &::before {
+          top: calc(100%);
+        }
+
+        &::after {
+          top: calc(100% - 2px);
+          left: calc(100% - 12px);
+        }
+      }
+    }
+  }
+
+
+
+</style>

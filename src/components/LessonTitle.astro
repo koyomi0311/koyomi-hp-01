@@ -1,0 +1,68 @@
+---
+const { titleText, titleTextClass, imgSrc, imgWidth, imgHeight, imgClass } = Astro.props;
+---
+
+<div class="c-lesson-title">
+  <img src={imgSrc || "/public/assets/images/global/text-group-lesson.svg"} alt="" loading="lazy" decoding="async" width={imgWidth || 277} height={imgHeight || 100} class={imgClass || "c-lesson-title-image c-lesson-title-image--01"}>
+  <h3 class={titleTextClass || "c-lesson-title-text"}>{titleText}</h3>
+</div><!-- /.c-lesson-title -->
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .c-lesson-title {
+    width: fit-content;
+  }
+
+  .c-lesson-title-image {
+    height: 50px;
+
+    &--01 {
+      width: 139px;
+    }
+
+    &--02 {
+      width: 150px;
+    }
+  }
+
+  .c-lesson-title-text {
+    margin: -19px 2px 0 0;
+    font-size: 10px;
+    text-align: right;
+
+    &--private {
+      margin: -12px 2px 0 0;
+    }
+  }
+
+  @include mq() {
+    .c-lesson-title {
+    }
+
+    .c-lesson-title-image {
+      height: 100px;
+
+      &--01 {
+        width: 277px;
+      }
+
+      &--02 {
+        width: 299px;
+      }
+    }
+
+    .c-lesson-title-text {
+      margin: -38px 2px 0 0;
+      font-size: 20px;
+
+      &--private {
+        margin: -23px 2px 0 0;
+      }
+    }
+
+  }
+
+
+
+</style>

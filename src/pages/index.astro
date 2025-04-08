@@ -1,0 +1,1447 @@
+---
+import "../styles/style.scss";
+import SectionTitle from "../components/SectionTitle.astro";
+import LessonTitle from "../components/LessonTitle.astro";
+
+// import Layout from '../layouts/Layout.astro';
+
+const logoWide = "/assets/images/global/logo-wide.svg";
+
+const navJson = [
+  {
+    href: '/#concept',
+    label: 'コンセプト'
+  },
+  {
+    href: '/#menu',
+    label: 'メニュー'
+  },
+  {
+    href: '/#access',
+    label: 'アクセス'
+  },
+  {
+    href: '/#faq',
+    label: 'よくある質問'
+  },
+  {
+    href: '/contact',
+    label: 'お問い合わせ'
+  }
+]
+
+const snsJson = [
+  {
+    href: '#',
+    src: '/assets/images/global/icon-line.svg',
+    alt: 'LINE'
+  },
+  {
+    href: '#',
+    src: '/assets/images/global/icon-instagram.svg',
+    alt: 'Instagram'
+  }
+]
+
+const {
+  subTitle = "トップページ",
+  ogType = "website",
+  ogTitle = subTitle,
+  description = "埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。",
+  ogDescription = description,
+  // noContact = false,
+  noIndex = false,
+  jsonLd = ""
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana｜{subTitle}</title>
+    <meta name="description" content={description}>
+
+    <!-- noindex -->
+    <!-- { noIndex && <meta name="robots" content="noindex, nofollow"> } -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/android-chrome-256x256.png">
+
+    <!-- ogp -->
+    <meta property="og:site_name" content="埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana">
+    <meta property="og:url" content={`https://mahana-organic.com${Astro.url.pathname}`} />
+    <meta property="og:type" content={ogType}>
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content={ogDescription}>
+    <meta property="og:image" content="https://mahana-organic.com/ogp.webp">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content={ogDescription}>
+    <meta name="twitter:image:src" content="https://mahana-organic.com/ogp.webp">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- destyle.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-container l-container">
+        <h1 class="header-logo">
+          <a href="/">
+            <img src={logoWide} alt="koyomi yoga pilates" loading="eager" decoding="async" width="142" height="45">
+          </a>
+        </h1>
+          <a href="#" class="header-sp-reservation">ご予約</a>
+          <button class="header-hamburger" type="button">
+            <span class="header-hamburger-icon"></span>
+            <span class="header-hamburger-icon"></span>
+            <span class="header-hamburger-icon"></span>
+            <span class="u-sr-only">メニュー</span>
+          </button>
+        <div class="header-link">
+          <nav class="header-nav">
+            <ul class="header-nav-list">
+              {navJson.map((navJson_item) =>
+                <li class="header-nav-item">
+                  <a href={navJson_item.href}>{navJson_item.label}</a>
+                </li>
+              )}
+            </ul>
+          </nav>
+          <div class="header-external-link">
+            <a href="#" class="header-reservation header-reservation--pc">ご予約</a>
+            <a href="#" class="header-reservation header-reservation--sp">今すぐ予約する</a>
+            <ul class="header-sns">
+              <!-- {snsJson.map((snsJson_item) =>
+                <li class="header-sns-item">
+                  <a href={snsJson_item.href}>
+                    <img
+                      src={snsJson_item.src}
+                      alt={snsJson_item.alt}
+                      loading="eager"
+                      decoding="async"
+                      width="20"
+                      height="20"
+                    >
+                  </a>
+                </li>
+              )} -->
+              <li class="header-sns-item">
+                <a href="#">
+                  <img src="/assets/images/global/icon-line.svg" alt="'LINE" loading="eager" decoding="async" width="20" height="20">
+                </a>
+              </li>
+              <li class="header-sns-item">
+                <a href="#">
+                  <img src="/assets/images/global/icon-instagram.svg" alt="'Instagram" loading="eager" decoding="async" width="20" height="20">
+                </a>
+              </li>
+            </ul>
+          </div><!-- /.header-external-link -->
+        </div><!-- /.header-link -->
+      </div><!-- /.header-container.l-container -->
+    </header>
+
+    <!-- top-kv -->
+    <div class="top-kv">
+      <div class="top-kv-bg">
+        <picture>
+          <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
+          <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
+          <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+        </picture>
+      </div><!-- /.top-kv-bg -->
+      <div class="top-kv-container l-container">
+        <div class="top-kv-logo">
+          <img src="/assets/images/global/logo-tall.svg" alt="koyomi yoga pilatesのロゴ" loading="eager" decoding="async" width="292" height="330">
+        </div><!-- /.top-kv-logo -->
+      </div><!-- /.top-kv-container.l-container -->
+    </div><!-- /.top-kv -->
+
+    <main class="top-main">
+      <div class="top-concept-bg">
+        <!-- top-catchphrase -->
+        <div class="top-catchphrase">
+          <div class="top-catchphrase-container l-container-s">
+            <p class="top-catchphrase-text"><span class="top-catchphrase-text-lg">心地</span>よい<span class="top-catchphrase-text-lg">毎日</span>をここから。<br>忙しい日常に、<span class="top-catchphrase-text-lg">心</span>と<span class="top-catchphrase-text-lg">体</span>を<span class="top-catchphrase-text-lg">解く時間</span>を。</p>
+            <div class="top-catchphrase-image">
+              <picture>
+                <source media="(max-width: 767px)" srcset="/public/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg">
+                <source media="(min-width: 768px)" srcset="/public/assets/images/catchphrase/pic-catchphrase-flower-pc@2x.jpg">
+                <img src="/public/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg" alt="" loading="lazy" decoding="async" width="240" height="160">
+              </picture>
+            </div><!-- /.top-catchphrase-image -->
+          </div><!-- /.top-catchphrase-container.l-container-s -->
+        </div><!-- /.top-catchphrase -->
+
+        <!-- top-concept -->
+        <section class="top-concept">
+          <div class="l-container-s">
+            <div class="top-concept-title">
+              <SectionTitle titleText="コンセプト" />
+            </div><!-- /.top-concept-title -->
+            <div class="top-concept-section-body">
+              <div class="top-concept-description">
+                <p class="top-concept-text">月日と共に変わる心と身体。<br>歳を重ねることは日々の中で<br class="u-no-pc">自分を見つめ直す旅です。</p>
+                <p class="top-concept-text">ここは、がんばる女性たちが<br class="u-no-pc">ほっと一息つける場所。</p>
+                <p class="top-concept-text">忙しさに埋もれた心をそっとほどき、<br>あなた自身を大切にする時間を<br class="u-no-pc">お届けします。</p>
+                <p class="top-concept-text">ヨガで心を整え、<br class="u-no-pc">内側から軽くなる感覚を。<br>ピラティスで体を支え、<br class="u-no-pc">日々にゆとりをつくる。</p>
+                <p class="top-concept-text">季節の移ろいや、<br class="u-no-pc">月のリズムとともに、<br>誰もが安心して自分を取り戻せる、<br class="u-no-pc">そんな居場所を目指しています。</p>
+              </div><!-- /.top-concept-description -->
+            </div><!-- /.top-concept-section-body -->
+          </div><!-- /.l-container-s -->
+          <div class="top-concept-bg"></div>
+        </section><!-- /.top-concept -->
+        <div class="top-concept-bg-image"></div>
+      </div><!-- /.top-concept-bg -->
+
+      <!-- top-programs -->
+      <section class="top-programs">
+        <div class="top-programs-title">
+          <h2 class="top-programs-title-text">女性の体のサイクルにあわせた<br class="u-no-pc">多彩なプログラム</h2>
+          <div class="top-programs-title-dec">
+            <picture>
+              <source media="(max-width: 767px)" srcset="/public/assets/images/programs/image-programs-title-dec-sp@2x.png">
+              <source media="(min-width: 768px)" srcset="/public/assets/images/programs/image-programs-title-dec-pc@2x.png">
+              <img src="/public/assets/images/programs/image-programs-title-dec-sp@2x.png" alt="" loading="lazy" decoding="async" width="250" height="11">
+            </picture>
+          </div><!-- /.top-programs-title-dec -->
+        </div><!-- /.top-programs-title -->
+        <div class="top-programs-section-body l-section-body">
+          <ul class="top-programs-list">
+            <li class="top-programs-item top-programs-item--01">
+              <dl class="top-programs-def-list">
+                <dt id="label-ninshin">妊娠期</dt>
+                <dd aria-labelledby="label-ninshin">
+                  マタニティヨガ
+                  <small class="top-programs-note">※妊娠16週目以降</small>
+                  <small class="top-programs-note">※医師の許可が必要</small>
+                </dd>
+              </dl>
+            </li>
+            <li class="top-programs-item top-programs-item--02">
+              <dl class="top-programs-def-list">
+                <dt id="label-sango">産後ケア</dt>
+                <dd aria-labelledby="label-sango">プライベート<br>マシンピラティス</dd>
+              </dl>
+            </li>
+            <li class="top-programs-item top-programs-item--03">
+              <dl class="top-programs-def-list">
+                <dt id="label-fullmoon-newmoon">満月〜新月</dt>
+                <dd aria-labelledby="label-fullmoon-newmoon">デトックスヨガ</dd>
+              </dl>
+            </li>
+            <li class="top-programs-item top-programs-item--04">
+              <dl class="top-programs-def-list">
+                <dt id="label-stresscare">ストレスケア</dt>
+                <dd aria-labelledby="label-stresscare">モーニングヨガ</dd>
+                <dd aria-labelledby="label-stresscare">ストレス改善ヨガ</dd>
+                <dd aria-labelledby="label-stresscare">心を満たすヨガ</dd>
+              </dl>
+            </li>
+            <li class="top-programs-item top-programs-item--05">
+              <dl class="top-programs-def-list">
+                <dt id="label-bodymake">ボディメイク</dt>
+                <dd aria-labelledby="label-bodymake">姿勢改善ピラティス</dd>
+                <dd aria-labelledby="label-bodymake">くびれフローヨガ</dd>
+                <dd aria-labelledby="label-bodymake">季節の太陽礼拝</dd>
+              </dl>
+            </li>
+          </ul>
+          <div class="top-programs-images-sp l-container">
+            <div class="top-programs-images-sp-upper">
+              <img src="/public/assets/images/programs/pic-programs-sp-01@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+              <img src="/public/assets/images/programs/pic-programs-sp-02@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+              <img src="/public/assets/images/programs/pic-programs-sp-03@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+            </div><!-- /.top-programs-images-sp-upper -->
+            <div class="top-programs-images-sp-lower">
+              <img src="/public/assets/images/programs/pic-programs-sp-04@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+              <img src="/public/assets/images/programs/pic-programs-sp-05@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+            </div><!-- /.top-programs-images-sp-lower -->
+          </div><!-- /.top-programs-images-sp -->
+          <div class="top-programs-images-pc l-container">
+            <img src="/public/assets/images/programs/pic-programs-pc-01@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+            <img src="/public/assets/images/programs/pic-programs-pc-02@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+            <img src="/public/assets/images/programs/pic-programs-pc-03@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+            <img src="/public/assets/images/programs/pic-programs-pc-04@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+            <img src="/public/assets/images/programs/pic-programs-pc-05@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+          </div><!-- /.top-programs-images-pc -->
+        </div><!-- /.top-programs-section-body.l-section-body -->
+      </section><!-- /.top-programs -->
+
+      <!-- top-menu -->
+      <section class="top-menu">
+        <div class="l-container-s">
+          <div class="top-menu-title">
+            <SectionTitle titleText="メニュー" />
+          </div><!-- /.top-menu-title -->
+          <div class="top-menu-section-body l-section-body">
+            <ul class="top-menu-list">
+              <li class="top-menu-item">
+                <div class="top-menu-lesson-title">
+                  <LessonTitle
+                  titleText="グループレッスン"
+                  titleTextClass="c-lesson-title-text"
+                  imgSrc="/public/assets/images/global/text-group-lesson.svg"
+                  imgWidth="277"
+                  imgHeight="100"
+                  imgClass="c-lesson-title-image c-lesson-title-image--01"
+                  />
+                </div><!-- /.top-menu-lesson-title -->
+                <div class="top-menu-item-header">
+                  <div class="top-menu-description">
+                    <p class="top-menu-text">同じ想いを持つ仲間と一緒に、<br>心と体をゆっくりほどく時間を過ごしませんか?</p>
+                    <p class="top-menu-text">少人数制だから、慌ただしさはありません。</p>
+                    <p class="top-menu-text">落ち着いた空間で、 "誰かと一緒"の安心感が、<br>心の余裕と体の調和を<br>そっと育ててくれます。</p>
+                  </div><!-- /.top-menu-description -->
+                  <div class="top-menu-image">
+                    <img src="/public/assets/images/menu/pic-menu-group@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
+                  </div><!-- /.top-menu-image -->
+                </div><!-- /.top-menu-item-header -->
+                <div class="top-menu-item-body">
+                  <div class="top-menu-detail">
+                    <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
+                    <div class="top-menu-one-off">
+                      <dl class="top-menu-one-off-def-list">
+                        <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><span class="top-menu-plus">＋</span>60分レッスン</dt>
+                        <dd>
+                          <span aria-label="さんぜんごひゃくえん">
+                            <span class="top-menu-price">3,500</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                        </dd>
+                      </dl>
+                    </div><!-- /.top-menu-one-off -->
+                  </div><!-- /.top-menu-detail -->
+                  <div class="top-menu-detail">
+                    <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-beige">継続して通いたい方</h4>
+                    <div class="top-menu-continuation">
+                      <p class="top-menu-coupon-ticket">回数券</p>
+                      <dl class="top-menu-continuation-def-list">
+                        <dt>4回券</dt>
+                        <dd>
+                          <span aria-label="いちまんにせんはっぴゃくえん">
+                            <span class="top-menu-price">12,800</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                          <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんにひゃくえん">3,200円</span>)</span>
+                        </dd>
+                        <dt>8回券</dt>
+                        <dd>
+                          <span aria-label="にまんよんせんえん">
+                            <span class="top-menu-price">24,000</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                          <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんえん">3,000円</span>)</span>
+                        </dd>
+                      </dl>
+                    </div><!-- /.top-menu-continuation -->
+                    <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
+                  </div><!-- /.top-menu-detail -->
+                </div><!-- /.top-menu-item-body -->
+              </li>
+              <li class="top-menu-item">
+                <div class="top-menu-lesson-title top-menu-lesson-title--private">
+                  <LessonTitle
+                  titleText="プライベートレッスン"
+                  titleTextClass="c-lesson-title-text c-lesson-title-text--private"
+                  imgSrc="/public/assets/images/global/text-private-lesson.svg"
+                  imgWidth="299"
+                  imgHeight="100"
+                  imgClass="c-lesson-title-image c-lesson-title-image--02"
+                  />
+                </div><!-- /.top-menu-lesson-title -->
+                <div class="top-menu-item-header">
+                  <div class="top-menu-description">
+                    <p class="top-menu-text">誰にも気兼ねせず、<br>自分のペースで進められる特別なレッスン。</p>
+                    <p class="top-menu-text">心と体の状態に丁寧に向き合いながら、<br>一人ひとりに合わせて<br>必要なサポートをご提供します。</p>
+                    <p class="top-menu-text">"自分だけの時間”で、忙しい日常を少し離れて、<br>心地よいリズムを取り戻しませんか?</p>
+                  </div><!-- /.top-menu-description -->
+                  <div class="top-menu-image">
+                    <img src="/public/assets/images/menu/pic-menu-private@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
+                  </div><!-- /.top-menu-image -->
+                </div><!-- /.top-menu-item-header -->
+                <div class="top-menu-item-body">
+                  <div class="top-menu-detail">
+                    <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
+                    <div class="top-menu-one-off">
+                      <dl class="top-menu-one-off-def-list">
+                        <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><span class="top-menu-plus">＋</span>60分レッスン<span class="top-menu-plus">＋</span>姿勢チェック<span class="top-menu-plus">＋</span>50分レッスン</dt>
+                        <dd>
+                          <span aria-label="ななせんごひゃくえん">
+                            <span class="top-menu-price">7,500</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                        </dd>
+                      </dl>
+                    </div><!-- /.top-menu-one-off -->
+                  </div><!-- /.top-menu-detail -->
+                  <div class="top-menu-detail">
+                    <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-skyblue">継続して通いたい方</h4>
+                    <div class="top-menu-continuation">
+                      <p class="top-menu-coupon-ticket">回数券</p>
+                      <dl class="top-menu-continuation-def-list">
+                        <dt>4回券</dt>
+                        <dd>
+                          <span aria-label="にまんはっせんはっぴゃくえん">
+                            <span class="top-menu-price">28,800</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                          <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんにひゃくえん">7,200円</span>)</span>
+                        </dd>
+                        <dt>8回券</dt>
+                        <dd>
+                          <span aria-label="ごまんろくせんえん">
+                            <span class="top-menu-price">56,000</span>
+                            <span class="top-menu-yen">円</span>
+                          </span>
+                          <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんえん">7,000円</span>)</span>
+                        </dd>
+                      </dl>
+                    </div><!-- /.top-menu-continuation -->
+                    <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
+                  </div><!-- /.top-menu-detail -->
+                </div><!-- /.top-menu-item-body -->
+              </li>
+            </ul>
+          </div><!-- /.top-menu-section-body.l-section-body -->
+        </div><!-- l-container-s -->
+      </section><!-- /.top-menu -->
+
+
+
+
+    </main>
+
+  </body>
+</html>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  // header
+  .header {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: var(--color-base);
+    font-size: 14px;
+    letter-spacing: .1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    width: 100%;
+    max-width: 141px;
+
+    a {
+      display: block;
+    }
+
+    img {
+      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
+    }
+  }
+
+  .header-sp-reservation {
+    display: none;
+  }
+
+  .header-hamburger {
+
+  }
+
+  .header-link {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-nav {
+  }
+
+  .header-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-nav-item {
+
+    a {
+      display: block;
+      padding: 8px 0;
+      transition: opacity .3s;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+
+  .header-external-link {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-reservation {
+    &--pc {
+      display: grid;
+      place-items: center;
+      width: 110px;
+      height: 30px;
+      border: 3px solid var(--color-main);
+      color: var(--color-base);
+      position: relative;
+      transition: all .3s ease;
+
+      &::before,
+      &::after {
+        content: "";
+        transition: all .3s ease;
+      }
+
+      &::before {
+        width: 10px;
+        height: 10px;
+        background-color: var(--color-base);
+        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        position: absolute;
+        top: calc(50% + 7px);
+        left: calc(50% + 47px);
+        transform: translate(-50%, -50%);
+      }
+
+      &::after {
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-main);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: -1;
+      }
+
+      &:hover {
+        border-width: 1px;
+        background-color: var(--color-base);
+        color: var(--color-main);
+
+        &::before {
+          background-color: var(--color-main);
+        }
+
+        &::after {
+          background-color: var(--color-base);
+          width: calc(100% - 2px);
+          height: calc(100% - 2px);
+        }
+      }
+    }
+
+    &--sp {
+      display: none;
+    }
+  }
+
+  .header-sns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-sns-item {
+
+    a {
+      transition: opacity .3s;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+
+    img {
+      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .header {
+      height: 48px;
+      // position: fixed;
+      // top: 0;
+      // left: 0;
+      // z-index: 10;
+    }
+
+    .header-container {
+      width: 100%;
+      padding: 0 calc(20 var(--vw-sp));
+      position: relative;
+    }
+
+    .header-logo {
+      max-width: 78px;
+    }
+
+
+    .header-link {
+      display: none;
+    }
+
+
+    // header-sp-reservation
+    .header-sp-reservation {
+      display: grid;
+      place-items: center;
+      width: 69px;
+      height: 24px;
+      margin-right: calc(15px + 23px);
+      font-size: 10px;
+      background-color: var(--color-main);
+      color: var(--color-base);
+    }
+
+    // hamburger
+    .header-hamburger {
+      width: 23px;
+      height: 48px;
+      margin: auto 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(20 var(--vw-sp));
+    }
+
+    .header-hamburger-icon {
+      display: inline-block;
+      width: 23px;
+      height: 1px;
+      background-color: var(--color-main);
+      position: absolute;
+      left: 0;
+      transition: all .3s ease;
+
+      &:nth-of-type(1) {
+        top: 16px;
+      }
+
+      &:nth-of-type(2) {
+        top: 24px;
+      }
+
+      &:nth-of-type(3) {
+        top: 32px;
+      }
+    }
+  }
+
+
+  // top-kv
+  .top-kv {
+    width: 100%;
+    height: calc(100vh - 48px);
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .top-kv-bg {
+    height: inherit;
+
+    img {
+      width: 100%;
+      height: calc(100vh - 48px);
+      object-fit: cover;
+    }
+  }
+
+  .top-kv-container {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .top-kv-logo {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    img {
+      width: 100%;
+      max-width: 184px;
+    }
+  }
+
+  @include mq() {
+    .top-kv {
+      height: 800px;
+      margin-top: 70px;
+    }
+
+    .top-kv-bg {
+      img {
+        height: 800px;
+      }
+    }
+
+    .top-kv-logo {
+      img {
+        max-width: 292px;
+      }
+    }
+  }
+
+
+  // top-catchphrase
+  .top-catchphrase {
+    margin-top: 60px;
+  }
+
+  .top-catchphrase-container {
+    max-width: 500px;
+  }
+
+  .top-catchphrase-text {
+    letter-spacing: .2em;
+    line-height: 2;
+  }
+
+  .top-catchphrase-text-lg {
+    font-size: 18px;
+  }
+
+  .top-catchphrase-image {
+    margin-top: 20px;
+    text-align: right;
+
+    img {
+      width: 100%;
+      max-width: 240px;
+    }
+  }
+
+  @include mq() {
+    .top-catchphrase {
+      margin-top: 100px;
+    }
+
+    .top-catchphrase-container {
+      max-width: calc(var(--width-content-s) + 40px * 2);
+    }
+
+    .top-catchphrase-text {
+      font-size: 26px;
+      letter-spacing: .3em;
+    }
+
+    .top-catchphrase-text-lg {
+      font-size: 30px;
+    }
+
+    .top-catchphrase-image {
+
+      img {
+        max-width: 650px;
+      }
+    }
+  }
+
+
+  // top-concept
+  .top-concept {
+    padding-bottom: 80px;
+    margin-top: 125px;
+  }
+
+  .top-concept-section-body {
+    margin-top: 40px;
+  }
+
+  .top-concept-description {
+    display: grid;
+    gap: 1.87em;
+  }
+
+  .top-concept-text {
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  // top-concept-bg
+  .top-concept-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .top-concept-bg-image {
+    width: 800px;
+    height: 1030px;
+    background-image: url(../../public/assets/images/concept/bg-concept-sp@2x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+  }
+
+  @include mq() {
+    .top-concept {
+      padding-bottom: 166px;
+      margin-top: 180px;
+    }
+
+    .top-concept-section-body {
+      margin-top: 67px;
+    }
+
+    .top-concept-description {
+      gap: 2.5em;
+    }
+
+    .top-concept-text {
+      font-size: 20px;
+      line-height: 2;
+    }
+
+    // top-concept-bg
+    .top-concept-bg-image {
+      width: 2000px;
+      height: 1486px;
+      background-image: url(../../public/assets/images/concept/bg-concept-pc@2x.png);
+    }
+  }
+
+  // top-programs
+  .top-programs {
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .top-programs-title {
+  }
+
+  .top-programs-title-text {
+    font-size: 16px;
+  }
+
+  .top-programs-title-dec {
+    margin-top: 10px;
+    line-height: 0;
+
+    img {
+      display: inline-block;
+      max-width: 250px;
+    }
+  }
+
+  .top-programs-list {
+    width: clamp(314px, calc(328 var(--vw-sp)), 375px);
+    height: calc(344px + 156px);
+    margin: auto;
+    position: relative;
+  }
+
+  .top-programs-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 168px;
+    height: 156px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+
+    &--01 {
+      background-image: url(../../public/assets/images/programs/bg-programs-01@2x.png);
+      top: 0;
+      left: 0;
+    }
+
+    &--02 {
+      background-image: url(../../public/assets/images/programs/bg-programs-02@2x.png);
+      top: 86px;
+      right: 0;
+    }
+
+    &--03 {
+      background-image: url(../../public/assets/images/programs/bg-programs-03@2x.png);
+      top: 172px;
+      left: 0;
+    }
+
+    &--04 {
+      background-image: url(../../public/assets/images/programs/bg-programs-04@2x.png);
+      top: 258px;
+      right: 0;
+    }
+
+    &--05 {
+      background-image: url(../../public/assets/images/programs/bg-programs-05@2x.png);
+      top: 344px;
+      left: 0;
+    }
+  }
+
+  .top-programs-def-list {
+    dt {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    dd {
+      width: fit-content;
+      margin: auto;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+
+  }
+
+  .top-programs-note {
+    display: block;
+    font-size: 10px;
+    text-align-last: left;
+
+    &:first-of-type {
+      margin-top: 5px;
+    }
+  }
+
+  .top-programs-images-sp {
+    max-width: 375px;
+    margin-top: 40px;
+  }
+
+  .top-programs-images-sp-upper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: min(10px, calc(10 var(--vw-sp)));
+  }
+
+  .top-programs-images-sp-lower {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: min(10px, calc(10 var(--vw-sp)));
+    margin-top: min(10px, calc(10 var(--vw-sp)));
+  }
+
+  .top-programs-images-pc {
+    display: none;
+  }
+
+  @include mq() {
+    .top-programs {
+      margin-top: 120px;
+    }
+
+    .top-programs-title {
+    }
+
+    .top-programs-title-text {
+      font-size: 20px;
+    }
+
+    .top-programs-title-dec {
+      // margin-top: 10px;
+      // line-height: 0;
+
+      img {
+        max-width: 546px;
+      }
+    }
+
+    .top-programs-section-body {
+      margin-top: 60px;
+    }
+
+    .top-programs-list {
+      width: 600px;
+      height: 820px;
+    }
+
+    .top-programs-item {
+      width: 280px;
+      height: 260px;
+
+      &--01 {
+        top: 0;
+      }
+
+      &--02 {
+        top: 86px;
+      }
+
+      &--03 {
+        top: 279px;
+      }
+
+      &--04 {
+        top: 366px;
+      }
+
+      &--05 {
+        top: 559px;
+      }
+    }
+
+    .top-programs-def-list {
+      dt {
+        font-size: 20px;
+      }
+
+      dd {
+        // width: fit-content;
+        // margin: auto;
+
+        &:first-of-type {
+          margin-top: 20px;
+        }
+      }
+
+    }
+
+    .top-programs-note {
+      font-size: 12px;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+
+    .top-programs-images-sp {
+      display: none;
+    }
+
+    .top-programs-images-pc {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: min(18px, calc(18 var(--vw-pc)));
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1366px) {
+    .top-programs-list {
+      width: 100%;
+      max-width: calc(1168px + 20px * 2);
+      height: calc(165px + 260px);
+      padding: 0 20px;
+    }
+
+    .top-programs-item {
+      &--01 {
+        top: 0;
+        left: 20px;
+      }
+
+      &--02 {
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+
+      &--03 {
+        top: 0;
+        left: auto;
+        right: 20px;
+      }
+
+      &--04 {
+        top: 165px;
+        right: auto;
+        left: 242px;
+      }
+
+      &--05 {
+        top: 165px;
+        left: auto;
+        right: 242px;
+      }
+    }
+  }
+
+  // top-menu
+  .top-menu {
+    margin-top: 60px;
+  }
+
+  .top-menu-title {
+  }
+
+  .top-menu-section-body {
+
+  }
+
+  .top-menu-list {
+    display: grid;
+    gap: 13px;
+  }
+
+  .top-menu-item {
+  }
+
+  .top-menu-lesson-title {
+    padding: 1px 0 13px 2px;
+    border-bottom: 1px solid;
+  }
+
+  .top-menu-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .top-menu-description {
+    display: grid;
+    gap: 1.72em;
+    line-height: 1.8;
+  }
+
+  .top-menu-text {
+
+  }
+
+  .top-menu-image {
+
+  }
+
+  .top-menu-item-body {
+    display: grid;
+    gap: 38px;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .top-menu-detail {
+
+  }
+
+  .top-menu-detail-heading {
+    padding: 8px 0 7px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+
+    &--bg-beige {
+      background-color: #e9d5c4;
+    }
+
+    &--bg-skyblue {
+      background-color: #d2e7ee;
+    }
+
+    &--bg-beige::before,
+    &--bg-skyblue::before {
+      content: "";
+      width: 32.5px;
+      height: 12.5px;
+      margin: auto;
+      background-image: url(/assets/images/menu/image-menu-dec@2x.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      position: absolute;
+      top: -19px;
+      right: 0;
+      left: 0;
+    }
+
+  }
+
+  .top-menu-one-off {
+
+  }
+
+  .top-menu-one-off-def-list {
+    display: grid;
+    line-height: 1.75;
+
+    dt {
+      font-weight: 500;
+    }
+
+    dd {
+      text-align: right;
+    }
+  }
+
+  .top-menu-first-time {
+    margin-left: 5px;
+  }
+
+  .top-menu-plus {
+    margin: 0 4px;
+    font-size: 14px;
+  }
+
+  .top-menu-price {
+
+  }
+
+  .top-menu-yen {
+    font-size: 12px;
+  }
+
+  .top-menu-continuation {
+    display: flex;
+    gap: 24px;
+  }
+
+  .top-menu-coupon-ticket {
+    flex: 0 0 50px;
+  }
+
+  .top-menu-continuation-def-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 0;
+    width: 100%;
+
+    dt {
+      width: 44px;
+      font-weight: 500;
+    }
+
+    dd {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      gap: 6px;
+      width: calc(100% - 44px);
+    }
+  }
+
+  .top-menu-unit-price {
+    font-size: 12px;
+  }
+
+  .top-menu-note {
+    display: block;
+    width: fit-content;
+    margin: 10px 0 0 auto;
+    font-size: 12px;
+  }
+
+  @include mq() {
+    .top-menu {
+      margin-top: 80px;
+    }
+
+    .top-menu-list {
+      gap: 48px;
+    }
+
+    .top-menu-item {
+    }
+
+    .top-menu-lesson-title {
+      padding: 1px 0 14px 2px;
+    }
+
+    .top-menu-item-header {
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: min(80px, calc(80 var(--vw-pc)));
+      margin-top: 40px;
+    }
+
+    .top-menu-description {
+      flex: 0 0 310px;
+      gap: 1em;
+      font-size: 14px;
+    }
+
+    .top-menu-text {
+
+    }
+
+    .top-menu-image {
+      flex: 1 1 auto;
+    }
+
+    .top-menu-item-body {
+      grid-template-columns: repeat(2, 1fr);
+      gap: min(100px, calc(100 var(--vw-pc)));
+      margin-top: 75px;
+      font-size: 16px;
+    }
+
+    .top-menu-detail {
+
+    }
+
+    .top-menu-detail-heading {
+      padding: 10px 0 9px;
+      margin-bottom: 30px;
+
+      &--bg-beige::before,
+      &--bg-skyblue::before {
+        width: 54px;
+        height: 21px;
+        top: -35px;
+      }
+    }
+
+    .top-menu-one-off {
+
+    }
+
+    .top-menu-one-off-def-list {
+      line-height: 1.75;
+    }
+
+    .top-menu-first-time {
+      margin-left: 6px;
+    }
+
+    .top-menu-plus {
+      margin: 0 4px;
+      font-size: 14px;
+    }
+
+    .top-menu-price {
+
+    }
+
+    .top-menu-yen {
+      font-size: 12px;
+    }
+
+    .top-menu-continuation {
+      gap: 14px;
+    }
+
+    .top-menu-coupon-ticket {
+      flex: 0 0 50px;
+    }
+
+    .top-menu-continuation-def-list {
+      // display: flex;
+      // flex-wrap: wrap;
+      gap: 20px 0;
+      // width: 100%;
+
+      dt {
+        width: 53px;
+      }
+
+      dd {
+        // display: flex;
+        // flex-direction: row-reverse;
+        // align-items: center;
+        // gap: 6px;
+        width: calc(100% - 53px);
+      }
+    }
+
+    .top-menu-unit-price {
+      font-size: 12px;
+    }
+
+    .top-menu-note {
+      // display: block;
+      // width: fit-content;
+      margin: 20px 0 0 auto;
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (min-width: 950px) {
+    .top-menu-description {
+      flex: 0 0 350px;
+      gap: 1.82em;
+      font-size: 16px;
+    }
+
+    .top-menu-item-body {
+      // grid-template-columns: repeat(2, 1fr);
+      // gap: min(100px, calc(100 var(--vw-pc)));
+      // margin-top: 75px;
+      font-size: 20px;
+    }
+
+    .top-menu-first-time {
+      margin-left: 10px;
+    }
+
+    .top-menu-plus {
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    .top-menu-yen {
+      font-size: 14px;
+    }
+
+    .top-menu-continuation {
+      gap: 18px;
+    }
+
+    .top-menu-coupon-ticket {
+      flex: 0 0 62px;
+    }
+
+    .top-menu-unit-price {
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .top-menu-note {
+      // display: block;
+      // width: fit-content;
+      font-size: 14px;
+    }
+
+
+
+
+
+  }
+
+
+
+
+</style>
+
