@@ -1,11 +1,11 @@
 ---
-const { titleText } = Astro.props;
+const { titleText, textClass, decClass, decClassRight } = Astro.props;
 ---
 
 <div class="c-section-title">
-  <div class="c-section-title-dec"></div>
-  <h2 class="c-section-title-text">{titleText}</h2>
-  <div class="c-section-title-dec c-section-title-dec--right"></div>
+  <div class={decClass || "c-section-title-dec"}></div>
+  <h2 class={textClass || "c-section-title-text"}>{titleText}</h2>
+  <div class={decClassRight || "c-section-title-dec c-section-title-dec--right"}></div>
 </div><!-- /.c-section-title -->
 
 <style lang="scss">
@@ -20,6 +20,10 @@ const { titleText } = Astro.props;
 
   .c-section-title-text {
     font-size: 16px;
+
+    &--white {
+      color: var(--color-base);
+    }
   }
 
   .c-section-title-dec {
@@ -54,6 +58,13 @@ const { titleText } = Astro.props;
       &::after {
         top: calc(100% - 7px);
         left: calc(100% - 8px);
+      }
+    }
+
+    &--white {
+      &::before,
+      &::after {
+        background-color: var(--color-base);
       }
     }
   }
@@ -91,7 +102,4 @@ const { titleText } = Astro.props;
       }
     }
   }
-
-
-
 </style>
