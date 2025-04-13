@@ -1,5 +1,6 @@
 ---
 import "../styles/style.scss";
+import "../styles/splide.css";
 import SectionTitle from "../components/SectionTitle.astro";
 import LessonTitle from "../components/LessonTitle.astro";
 import ButtonCta from "../components/ButtonCta.astro";
@@ -161,13 +162,34 @@ const {
 
     <!-- top-kv -->
     <div class="top-kv">
-      <div class="top-kv-bg">
-        <picture>
-          <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
-          <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
-          <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
-        </picture>
-      </div><!-- /.top-kv-bg -->
+      <div class="splide top-kv-bg"  id="image-slider" aria-label="メインビジュアルの画像スライダー">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <picture>
+                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
+                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
+                <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+              </picture>
+            </li>
+            <li class="splide__slide">
+              <picture>
+                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png">
+                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-02-pc@2x.png">
+                <img src="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+              </picture>
+            </li>
+            <li class="splide__slide">
+              <picture>
+                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png">
+                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-03-pc@2x.png">
+                <img src="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+              </picture>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div class="top-kv-container l-container">
         <div class="top-kv-logo">
           <img src={logoTall} alt="コヨミ ヨガ ピラティスのロゴ" loading="eager" decoding="async" width="292" height="330">
@@ -668,7 +690,22 @@ const {
       });
     });
   });
+
+  import Splide from '@splidejs/splide';
+  document.addEventListener( 'DOMContentLoaded', function() {
+    new Splide("#image-slider", {
+      autoplay: true,
+      type: "fade",
+      interval: 4500,
+      speed: 2000,
+      rewind: true,
+      arrows: false,
+      pagination: "splide__pagination top-kv-bg-pagination",
+      page: "splide__pagination__page top-kv-bg-page",
+    }).mount();
+  });
 </script>
+
 
 <style lang="scss">
   @use '../styles/breakpoints' as *;
@@ -917,7 +954,7 @@ const {
     }
 
     // animation
-    .header-hamburger .header-hamburger-icon:nth-of-type(1) {
+    .header-hamburger span:nth-of-type(1) {
       animation: btn07-bar01 .6s forwards;
     }
     @keyframes btn07-bar01 {
@@ -931,11 +968,11 @@ const {
         transform: translateY(0) rotate(0);
       }
     }
-    .header-hamburger .header-hamburger-icon:nth-of-type(2) {
+    .header-hamburger span:nth-of-type(2) {
       transition: all .25s .25s;
       opacity: 1;
     }
-    .header-hamburger .header-hamburger-icon:nth-of-type(3) {
+    .header-hamburger span:nth-of-type(3) {
       animation: btn07-bar03 .6s forwards;
     }
     @keyframes btn07-bar03 {
@@ -949,7 +986,7 @@ const {
         transform: translateY(0) rotate(0);
       }
     }
-    .header-hamburger.active .header-hamburger-icon:nth-of-type(1) {
+    .header-hamburger.active span:nth-of-type(1) {
       animation: active-btn07-bar01 .6s forwards;
     }
     @keyframes active-btn07-bar01 {
@@ -963,10 +1000,10 @@ const {
         transform: translateY(8px) rotate(45deg);
       }
     }
-    .header-hamburger.active .header-hamburger-icon:nth-of-type(2) {
+    .header-hamburger.active span:nth-of-type(2) {
       opacity: 0;
     }
-    .header-hamburger.active .header-hamburger-icon:nth-of-type(3) {
+    .header-hamburger.active span:nth-of-type(3) {
       animation: active-btn07-bar03 .6s forwards;
     }
     @keyframes active-btn07-bar03 {
@@ -1081,6 +1118,15 @@ const {
       height: calc(100vh - 48px);
       object-fit: cover;
     }
+  }
+
+  // pagination
+  .top-kv-bg-pagination {
+
+  }
+
+  .top-kv-bg-page {
+
   }
 
   .top-kv-container {
