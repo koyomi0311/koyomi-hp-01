@@ -595,7 +595,7 @@ const {
                   </div><!-- /.top-access-description -->
                 </div><!-- /.top-access-info -->
                 <div class="top-access-map">
-
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6471.432761231846!2d139.45373!3d35.8068955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018dd9b23c51e77%3A0x9af0a8d2fc5213c3!2skoyomi%20yoga%20pilates!5e0!3m2!1sja!2sjp!4v1744546051226!5m2!1sja!2sjp" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div><!-- /.top-access-map -->
               </div><!-- /.top-access-wrapper -->
               <div class="top-access-cta">
@@ -2199,10 +2199,16 @@ const {
   }
 
   .top-access-map {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 2 / 1;
-    background-color: #ddd;
+    // width: 100%;
+    // height: auto;
+    // aspect-ratio: 2 / 1;
+    background-color: #eee;
+
+    iframe {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 1;
+    }
   }
 
   .top-access-cta {
@@ -2240,9 +2246,24 @@ const {
     }
 
     .top-access-description {
+      flex: 0 0 237px;
       gap: 20px;
       margin-top: 22.5px;
       text-align: left;
+    }
+
+    .top-access-map {
+      flex: 1 1 auto;
+      // width: 100%;
+      // height: auto;
+      // aspect-ratio: 2 / 1;
+      background-color: #eee;
+
+      iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2 / 1;
+      }
     }
 
     .top-access-cta {
