@@ -1,13 +1,52 @@
 ---
 import "../styles/style.scss";
-import Header from "./Header.astro";
-import Footer from "./Footer.astro";
+// import Header from "./Header.astro";
+// import Footer from "./Footer.astro";
+
+const logoWide = "/assets/images/global/logo-wide.svg";
+const logoTall = "/assets/images/global/logo-tall.svg";
+
+const navList = [
+  {
+    href: '/#concept',
+    label: 'コンセプト'
+  },
+  {
+    href: '/#menu',
+    label: 'メニュー'
+  },
+  {
+    href: '/#access',
+    label: 'アクセス'
+  },
+  {
+    href: '/#faq',
+    label: 'よくある質問'
+  },
+  {
+    href: '/contact',
+    label: 'お問い合わせ'
+  }
+]
+
+const snsList = [
+  {
+    href: 'https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url',
+    src: '/assets/images/global/icon-line.svg',
+    ariaLabel: 'ラインで友だち追加'
+  },
+  {
+    href: 'https://www.instagram.com/kotono_yoga',
+    src: '/assets/images/global/icon-instagram.svg',
+    ariaLabel: 'インスタグラムを見る'
+  }
+]
 
 const {
   subTitle = "トップページ",
   ogType = "website",
   ogTitle = subTitle,
-  description = "埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。",
+  description = "所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」。マタニティ・産後ケアからボディメイクまで多彩なプログラム。少人数制の空間で心と体を整えます。",
   ogDescription = description,
   // noContact = false,
   noIndex = false,
@@ -20,10 +59,12 @@ const {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana｜{subTitle}</title>
+    <title>koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ｜{subTitle}</title>
     <meta name="description" content={description}>
 
-    { noIndex && <meta name="robots" content="noindex, nofollow"> }
+    <!-- noindex -->
+    <!-- { noIndex && <meta name="robots" content="noindex, nofollow"> } -->
+    <meta name="robots" content="noindex, nofollow">
 
     <!-- favicon -->
     <link rel="shortcut icon" href="/favicon.ico">
@@ -31,31 +72,882 @@ const {
     <link rel="icon" type="image/png" href="/android-chrome-256x256.png">
 
     <!-- ogp -->
-    <meta property="og:site_name" content="埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana">
-    <meta property="og:url" content={`https://mahana-organic.com${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ">
+    <meta property="og:url" content={`https://koyomi-yoga.com${Astro.url.pathname}`} />
     <meta property="og:type" content={ogType}>
     <meta property="og:title" content={ogTitle}>
     <meta property="og:description" content={ogDescription}>
-    <meta property="og:image" content="https://mahana-organic.com/ogp.webp">
+    <meta property="og:image" content="https://koyomi-yoga.com/ogp.webp">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:description" content={ogDescription}>
-    <meta name="twitter:image:src" content="https://mahana-organic.com/ogp.webp">
+    <meta name="twitter:image:src" content="https://koyomi-yoga.com/ogp.webp">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
 
     <!-- destyle.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css">
+
+    <!-- 構造化データ -->
+    {jsonLd && (
+      <script type="application/ld+json" set:html={jsonLd}></script>
+    )}
   </head>
 
   <body>
-    <Header />
+    <!-- header -->
+    <header class="header" id="site-header">
+      <div class="header-container l-container">
+        <h1 class="header-logo">
+          <a href="/">
+            <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="eager" decoding="async" width="142" height="45">
+          </a>
+        </h1>
+        <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-sp-reservation">ご予約</a>
+        <button class="header-hamburger" type="button">
+          <span class="header-hamburger-icon"></span>
+          <span class="header-hamburger-icon"></span>
+          <span class="header-hamburger-icon"></span>
+          <span class="u-sr-only">メニュー</span>
+        </button>
+        <div class="header-link">
+          <nav class="header-nav">
+            <ul class="header-nav-list">
+              <li class="header-nav-item header-nav-item--top">
+                <a href="/">トップ</a>
+              </li>
+              {navList.map((item) =>
+                <li class="header-nav-item">
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              )}
+            </ul>
+          </nav>
+          <div class="header-external-link">
+            <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--pc">ご予約</a>
+            <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--sp">今すぐ予約する</a>
+            <ul class="header-sns">
+              <!-- {snsList.map((item) =>
+                <li class="header-sns-item">
+                  <a href={item.href} target="_blank" aria-label={item.ariaLabel}>
+                    <img
+                      src={item.src}
+                      alt=""
+                      loading="eager"
+                      decoding="async"
+                      width="20"
+                      height="20"
+                    >
+                  </a>
+                </li>
+              )} -->
+              <li class="header-sns-item">
+                <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
+                  <img src="/assets/images/global/icon-line.svg" alt="" loading="eager" decoding="async" width="20" height="20">
+                </a>
+              </li>
+              <li class="header-sns-item">
+                <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インスタグラムを見る">
+                  <img src="/assets/images/global/icon-instagram.svg" alt="" loading="eager" decoding="async" width="20" height="20">
+                </a>
+              </li>
+            </ul>
+          </div><!-- /.header-external-link -->
+        </div><!-- /.header-link -->
+      </div><!-- /.header-container.l-container -->
+    </header>
 
     <slot />
 
-    <Footer />
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer-container l-container">
+        <div class="footer-logo footer-logo--sp">
+          <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
+        </div><!-- /.footer-logo -->
+        <div class="footer-logo footer-logo--pc">
+          <img src={logoTall} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="292" height="330">
+        </div><!-- /.footer-logo -->
+        <div class="footer-content">
+          <nav class="footer-nav">
+            <ul class="footer-nav-list">
+              <li class="footer-nav-item">
+                <a href="/">トップ</a>
+              </li>
+              {navList.map((navList_item) =>
+                <li class="footer-nav-item">
+                  <a href={navList_item.href}>{navList_item.label}</a>
+                </li>
+              )}
+              <li class="footer-nav-item">
+                <a href="https://coubic.com/yogapilates-koyomi" target="_blank">ご予約サイト</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="footer-bottom">
+            <div class="footer-links">
+              <ul class="footer-links-list">
+                <li class="footer-links-item">
+                  <a href="/law">特定商取引法に基づく表記</a>
+                </li>
+                <li class="footer-links-item">
+                  <a href="/privacy-policy">プライバシーポリシー</a>
+                </li>
+              </ul>
+              <ul class="footer-sns">
+                <li class="footer-sns-item">
+                  <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
+                    <img src="/assets/images/global/icon-line.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
+                  </a>
+                </li>
+                <li class="footer-sns-item">
+                  <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インタグラムを見る">
+                    <img src="/assets/images/global/icon-instagram.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
+                  </a>
+                </li>
+              </ul>
+            </div><!-- /.footer-links -->
+            <small class="footer-copyright" aria-label="著作権 2025 コヨミ ヨガ ピラティス">&copy; 2025 koyomi yoga pilates</small>
+          </div><!-- /.footer-bottom -->
+        </div><!-- /.footer-content -->
+      </div><!-- /.footer-container.l-container -->
+    </footer><!-- /.footer -->
   </body>
 </html>
+
+<script>
+  // hamburger menu
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".header-hamburger");
+    const headerLinks = document.querySelector(".header-link");
+    const navLinks = document.querySelectorAll(".header-link a");
+
+    hamburger.addEventListener("click", function () {
+      this.classList.toggle("active");
+      headerLinks.classList.toggle("active");
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        hamburger.classList.remove("active");
+        headerLinks.classList.remove("active");
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+    // header
+    .header {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: var(--color-base);
+    font-size: 14px;
+    letter-spacing: .1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    width: 100%;
+    max-width: 141px;
+
+    a {
+      display: block;
+    }
+
+    img {
+      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
+    }
+  }
+
+  .header-sp-reservation {
+    display: none;
+  }
+
+  .header-hamburger {
+
+  }
+
+  .header-link {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-nav {
+  }
+
+  .header-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-nav-item {
+    &--top {
+      display: none;
+    }
+
+    a {
+      display: block;
+      padding: 8px 0;
+      transition: opacity .3s;
+    }
+  }
+
+  .header-external-link {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .header-reservation {
+    &--pc {
+      display: grid;
+      place-items: center;
+      width: 110px;
+      height: 30px;
+      border: 3px solid var(--color-main);
+      color: var(--color-base);
+      position: relative;
+      transition: border-width .3s ease, background-color .3s ease, color .3s ease;
+
+      &::before,
+      &::after {
+        content: "";
+        transition: width .3s ease, height .3s ease, background-color .3s ease;
+      }
+
+      &::before {
+        width: 10px;
+        height: 10px;
+        background-color: var(--color-base);
+        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        position: absolute;
+        top: calc(50% + 7px);
+        left: calc(50% + 47px);
+        transform: translate(-50%, -50%);
+      }
+
+      &::after {
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-main);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: -1;
+      }
+    }
+
+    &--sp {
+      display: none;
+    }
+  }
+
+  .header-sns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-sns-item {
+    a {
+      transition: opacity .3s;
+    }
+
+    img {
+      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
+    }
+  }
+
+  @media (any-hover: hover) {
+    .header-nav-item {
+      a {
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+
+    .header-reservation {
+      &--pc {
+        &:hover {
+          border-width: 1px;
+          background-color: var(--color-base);
+          color: var(--color-main);
+
+          &::before {
+            background-color: var(--color-main);
+          }
+
+          &::after {
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            background-color: var(--color-base);
+          }
+        }
+      }
+    }
+
+    .header-sns-item {
+      a {
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .header {
+      height: 48px;
+    }
+
+    .header-container {
+      width: 100%;
+      padding: 0 calc(20 var(--vw-sp));
+      position: relative;
+    }
+
+    .header-logo {
+      max-width: 78px;
+    }
+
+    // header-sp-reservation
+    .header-sp-reservation {
+      display: grid;
+      place-items: center;
+      width: 69px;
+      height: 24px;
+      margin-right: calc(15px + 23px);
+      font-size: 10px;
+      background-color: var(--color-main);
+      color: var(--color-base);
+    }
+
+    // hamburger icon
+    .header-hamburger {
+      width: 23px;
+      height: 48px;
+      margin: auto 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(20 var(--vw-sp));
+      z-index: 30;
+    }
+
+    .header-hamburger-icon {
+      display: inline-block;
+      width: 23px;
+      height: 1px;
+      background-color: var(--color-main);
+      position: absolute;
+      left: 0;
+      transition: all .3s ease;
+
+      &:nth-of-type(1) {
+        top: 16px;
+      }
+
+      &:nth-of-type(2) {
+        top: 24px;
+      }
+
+      &:nth-of-type(3) {
+        top: 32px;
+      }
+    }
+
+    .header-hamburger.active {
+      .header-hamburger-icon {
+        background-color: var(--color-base);
+      }
+    }
+
+    // animation
+    .header-hamburger span:nth-of-type(1) {
+      animation: btn07-bar01 .6s forwards;
+    }
+    @keyframes btn07-bar01 {
+      0% {
+        transform: translateY(8px) rotate(45deg);
+      }
+      50% {
+        transform: translateY(8px) rotate(0);
+      }
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+    }
+    .header-hamburger span:nth-of-type(2) {
+      transition: all .25s .25s;
+      opacity: 1;
+    }
+    .header-hamburger span:nth-of-type(3) {
+      animation: btn07-bar03 .6s forwards;
+    }
+    @keyframes btn07-bar03 {
+      0% {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(0);
+      }
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+    }
+    .header-hamburger.active span:nth-of-type(1) {
+      animation: active-btn07-bar01 .6s forwards;
+    }
+    @keyframes active-btn07-bar01 {
+      0% {
+        transform: translateY(0) rotate(0);
+      }
+      50% {
+        transform: translateY(8px) rotate(0);
+      }
+      100% {
+        transform: translateY(8px) rotate(45deg);
+      }
+    }
+    .header-hamburger.active span:nth-of-type(2) {
+      opacity: 0;
+    }
+    .header-hamburger.active span:nth-of-type(3) {
+      animation: active-btn07-bar03 .6s forwards;
+    }
+    @keyframes active-btn07-bar03 {
+      0% {
+        transform: translateY(0) rotate(0);
+      }
+      50% {
+        transform: translateY(-8px) rotate(0);
+      }
+      100% {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+
+    // hamburger menu
+    .header-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      width: 69.3%;
+      height: 100vh;
+      padding: 84px 24px 60px 24px;
+      background-color: var(--color-main);
+      color: var(--color-base);
+      position: fixed;
+      top: 0;
+      right: -70%;
+      z-index: 20;
+      overflow: auto;
+      transition: all .6s ease;
+
+      &.active {
+        right: 0;
+      }
+    }
+
+    .header-nav {
+      width: 100%;
+    }
+
+    .header-nav-list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .header-nav-item {
+      width: 100%;
+      max-width: 150px;
+      &--top {
+        display: block;
+      }
+    }
+
+    .header-external-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .header-reservation {
+      &--pc {
+        display: none;
+      }
+
+      &--sp {
+        display: block;
+        width: fit-content;
+        height: 30px;
+        padding: 4px 19px;
+        border: 1px solid;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 10px;
+          height: 10px;
+          background-color: var(--color-base);
+          clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+          position: absolute;
+          right: 2.5px;
+          bottom: 2.5px;
+        }
+      }
+    }
+
+    .header-sns {
+      gap: 24px;
+    }
+
+    .header-sns-item {
+      img {
+        filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
+      }
+    }
+  }
+
+    // footer
+    .footer {
+    padding-top: 42px;
+    margin: auto;
+    color: var(--color-base);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+    }
+
+    &::before {
+      width: 800px;
+      height: 160px;
+      background-image: url(/assets/images/global/bg-footer-sp.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      top: 0;
+      left: 50%;
+      translate: -50%;
+    }
+
+    &::after {
+      display: block;
+      width: 100%;
+      height: 86px;
+      background-color: var(--color-main);
+      top: 158px;
+      left: 0;
+    }
+  }
+
+  .footer-container {
+    max-width: 370px;
+  }
+
+  .footer-logo--sp {
+    img {
+      width: 170px;
+      height: 54px;
+      filter: invert(100%) sepia(12%) saturate(2000%) hue-rotate(303deg) brightness(104%) contrast(94%);
+    }
+  }
+
+  .footer-logo--pc {
+    display: none;
+  }
+
+  .footer-content {
+    margin-top: 16px;
+  }
+
+  .footer-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
+
+  .footer-nav-item {
+    position: relative;
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(5),
+    &:nth-child(6) {
+      margin-right: min(25px, calc(18 var(--vw-sp)));
+
+      &::after {
+        content: "";
+        width: 1px;
+        height: 12px;
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: max(-25px, calc(-18 var(--vw-sp)));
+      }
+    }
+
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(6),
+    &:nth-child(7) {
+      margin-left: min(25px, calc(18 var(--vw-sp)));
+    }
+
+    a {
+      display: block;
+      padding: 4px 0;
+      font-size: 12px;
+      letter-spacing: .1em;
+    }
+  }
+
+  .footer-bottom {
+    height: 79px;
+    padding-top: 11px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-links-list {
+    display: flex;
+    gap: 21px;
+    margin-top: 7px;
+  }
+
+  .footer-links-item {
+    position: relative;
+
+    &:first-child::after {
+      content: "";
+      width: 1px;
+      height: 10px;
+      margin: auto;
+      background-color: var(--color-base);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -11px;
+
+    }
+    a {
+      display: block;
+      padding: 4px 0;
+      font-size: 10px;
+    }
+  }
+
+  .footer-sns {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-sns-item {
+    img {
+      width: 20px;
+      height: 20px;
+      filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
+    }
+  }
+
+  .footer-copyright {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: .02em;
+  }
+
+  @include mq() {
+    .footer {
+      padding-top: 62px;
+      margin: auto;
+      // 最終的にheightはautoに（削除）
+      height: 240px;
+
+      &::before {
+        width: 2000px;
+        height: 240px;
+        background-image: url(/assets/images/global/bg-footer-pc.svg);
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      max-width: calc(var(--width-content) + 40px * 2);
+    }
+
+    .footer-logo--sp {
+      display: none;
+    }
+
+    .footer-logo--pc {
+      display: block;
+
+      img {
+        width: 130px;
+        height: 147px;
+      }
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .footer-nav-list {
+      gap: 2px clamp(32px, calc(40 var(--vw-pc)), 40px);
+    }
+
+    .footer-nav-item {
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(5),
+      &:nth-child(6) {
+        margin-right: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(6),
+      &:nth-child(7) {
+        margin-left: 0;
+      }
+
+      &:not(:last-child)::after {
+        display: block;
+        content: "";
+        width: 1px;
+        height: clamp(12px, calc(14 var(--vw-pc)), 14px);
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -20px;
+      }
+
+      a {
+        padding: 6px 0;
+        font-size: clamp(12px, calc(14 var(--vw-pc)), 14px);
+      }
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      height: auto;
+      padding-top: 0;
+    }
+
+    .footer-links {
+      flex-direction: row-reverse;
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+    }
+
+    .footer-links-list {
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      margin-top: 0;
+    }
+
+    .footer-links-item {
+      position: relative;
+
+      &:first-child::after,
+      &:last-child::after {
+        content: "";
+        width: 1px;
+        height: 14px;
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -20px;
+      }
+      a {
+        font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
+      }
+    }
+
+    .footer-sns {
+      gap: 30px;
+      gap: clamp(20px, calc(30 var(--vw-pc)), 30px);
+    }
+
+    .footer-copyright {
+      margin-top: 0;
+      font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
+      letter-spacing: .025em;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .footer-nav-item a,
+    .footer-links-item a,
+    .footer-sns-item a {
+      transition: opacity .3s ease;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+</style>

@@ -1,392 +1,523 @@
 ---
-import "../styles/style.scss";
 import "../styles/splide.css";
+import Layout from '../layouts/Layout.astro';
+
 import SectionTitle from "../components/SectionTitle.astro";
 import LessonTitle from "../components/LessonTitle.astro";
 import ButtonCta from "../components/ButtonCta.astro";
 import ContactSection from "../components/ContactSection.astro";
 
-// import Layout from '../layouts/Layout.astro';
-
 const logoWide = "/assets/images/global/logo-wide.svg";
 const logoTall = "/assets/images/global/logo-tall.svg";
 
-const navList = [
-  {
-    href: '/#concept',
-    label: 'コンセプト'
-  },
-  {
-    href: '/#menu',
-    label: 'メニュー'
-  },
-  {
-    href: '/#access',
-    label: 'アクセス'
-  },
-  {
-    href: '/#faq',
-    label: 'よくある質問'
-  },
-  {
-    href: '/contact',
-    label: 'お問い合わせ'
-  }
-]
 
-const snsList = [
-  {
-    href: 'https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url',
-    src: '/assets/images/global/icon-line.svg',
-    ariaLabel: 'ラインで友だち追加'
+// 構造化データ生成関数
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "YogaStudio",
+  "name": "koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ",
+  "description": "所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」。マタニティ・産後ケアからボディメイクまで多彩なプログラム。少人数制の空間で心と体を整えます。",
+  "url": "https://koyomi-yoga.com/",
+  "image": "https://koyomi-yoga.com/ogp.webp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "松葉町11-11 刑部歯科医院 2階",
+    "addressLocality": "所沢市",
+    "addressRegion": "埼玉県",
+    "postalCode": "359-0044"
   },
-  {
-    href: 'https://www.instagram.com/kotono_yoga',
-    src: '/assets/images/global/icon-instagram.svg',
-    ariaLabel: 'インスタグラムを見る'
-  }
-]
-
-const {
-  subTitle = "トップページ",
-  ogType = "website",
-  ogTitle = subTitle,
-  description = "所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」。マタニティ・産後ケアからボディメイクまで多彩なプログラム。少人数制の空間で心と体を整えます。",
-  ogDescription = description,
-  // noContact = false,
-  noIndex = false,
-  jsonLd = ""
-} = Astro.props;
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.8068955,
+    "longitude": 139.45373,
+    "name": "koyomi yoga pilates"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:30",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url",
+    "https://www.instagram.com/kotono_yoga",
+    "https://coubic.com/yogapilates-koyomi"
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://coubic.com/yogapilates-koyomi",
+      "inLanguage": "ja-JP",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "result": {
+      "@type": "Reservation",
+      "name": "ヨガ・ピラティスレッスン予約"
+    }
+  },
+  "menu": [
+    {
+      "@type": "Menu",
+      "name": "グループレッスン",
+      "description": "同じ想いを持つ仲間と一緒に、心と体をゆっくりほどく時間を過ごしませんか？",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "カウンセリング＋60分レッスン",
+          "offers": {
+            "@type": "Offer",
+            "price": 3500,
+            "priceCurrency": "JPY"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "4回券",
+          "offers": {
+            "@type": "Offer",
+            "price": 12800,
+            "priceCurrency": "JPY"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "8回券",
+          "offers": {
+            "@type": "Offer",
+            "price": 24000,
+            "priceCurrency": "JPY"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Menu",
+      "name": "プライベートレッスン",
+      "description": "誰にも気兼ねせず、自分のペースで進められる特別なレッスン。心と体の状態に丁寧に向き合いながら、一人ひとりに合わせて必要なサポートをご提供します。",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "カウンセリング＋姿勢チェック＋50分レッスン",
+          "offers": {
+            "@type": "Offer",
+            "price": 7500,
+            "priceCurrency": "JPY"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "4回券",
+          "offers": {
+            "@type": "Offer",
+            "price": 28800,
+            "priceCurrency": "JPY"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "8回券",
+          "offers": {
+            "@type": "Offer",
+            "price": 56000,
+            "priceCurrency": "JPY"
+          }
+        }
+      ]
+    }
+  ],
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "服装について",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調が可能です。"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "Question",
+      "name": "駐車場・駐輪場について",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "Question",
+      "name": "持ちものについて",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。※マットやレッスンで使用するアイテムは、こちらでご用意しております。"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "Question",
+      "name": "男性の入店について",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "施設は女性専用のため、男性のご入店はお断りしております。"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "Question",
+      "name": "年齢制限について",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。"
+      },
+      "inLanguage": "ja"
+    }
+  ]
+});
 ---
 
-<!DOCTYPE html>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ｜{subTitle}</title>
-    <meta name="description" content={description}>
+<!-- top -->
+<Layout
+  subTitle="トップページ"
+  ogType="website"
+  description="所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」。マタニティ・産後ケアからボディメイクまで多彩なプログラム。少人数制の空間で心と体を整えます。"
+  jsonLd={jsonLd}
+>
 
-    <!-- noindex -->
-    <!-- { noIndex && <meta name="robots" content="noindex, nofollow"> } -->
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- favicon -->
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/android-chrome-256x256.png">
-
-    <!-- ogp -->
-    <meta property="og:site_name" content="koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ">
-    <meta property="og:url" content={`https://koyomi-yoga.com${Astro.url.pathname}`} />
-    <meta property="og:type" content={ogType}>
-    <meta property="og:title" content={ogTitle}>
-    <meta property="og:description" content={ogDescription}>
-    <meta property="og:image" content="https://koyomi-yoga.com/ogp.webp">
-    <meta property="og:locale" content="ja_JP">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content={ogDescription}>
-    <meta name="twitter:image:src" content="https://koyomi-yoga.com/ogp.webp">
-
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
-
-    <!-- destyle.css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css">
-  </head>
-
-  <body>
-    <!-- header -->
-    <header class="header" id="site-header">
-      <div class="header-container l-container">
-        <h1 class="header-logo">
-          <a href="/">
-            <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="eager" decoding="async" width="142" height="45">
-          </a>
-        </h1>
-        <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-sp-reservation">ご予約</a>
-        <button class="header-hamburger" type="button">
-          <span class="header-hamburger-icon"></span>
-          <span class="header-hamburger-icon"></span>
-          <span class="header-hamburger-icon"></span>
-          <span class="u-sr-only">メニュー</span>
-        </button>
-        <div class="header-link">
-          <nav class="header-nav">
-            <ul class="header-nav-list">
-              <li class="header-nav-item header-nav-item--top">
-                <a href="/">トップ</a>
-              </li>
-              {navList.map((item) =>
-                <li class="header-nav-item">
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              )}
-            </ul>
-          </nav>
-          <div class="header-external-link">
-            <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--pc">ご予約</a>
-            <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--sp">今すぐ予約する</a>
-            <ul class="header-sns">
-              <!-- {snsList.map((item) =>
-                <li class="header-sns-item">
-                  <a href={item.href} target="_blank" aria-label={item.ariaLabel}>
-                    <img
-                      src={item.src}
-                      alt=""
-                      loading="eager"
-                      decoding="async"
-                      width="20"
-                      height="20"
-                    >
-                  </a>
-                </li>
-              )} -->
-              <li class="header-sns-item">
-                <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
-                  <img src="/assets/images/global/icon-line.svg" alt="" loading="eager" decoding="async" width="20" height="20">
-                </a>
-              </li>
-              <li class="header-sns-item">
-                <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インスタグラムを見る">
-                  <img src="/assets/images/global/icon-instagram.svg" alt="" loading="eager" decoding="async" width="20" height="20">
-                </a>
-              </li>
-            </ul>
-          </div><!-- /.header-external-link -->
-        </div><!-- /.header-link -->
-      </div><!-- /.header-container.l-container -->
-    </header>
-
-    <!-- top-kv -->
-    <div class="top-kv">
-      <div class="splide top-kv-bg"  id="image-slider" aria-label="メインビジュアルの画像スライダー">
-        <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <picture>
-                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
-                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
-                <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
-              </picture>
-            </li>
-            <li class="splide__slide">
-              <picture>
-                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png">
-                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-02-pc@2x.png">
-                <img src="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
-              </picture>
-            </li>
-            <li class="splide__slide">
-              <picture>
-                <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png">
-                <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-03-pc@2x.png">
-                <img src="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
-              </picture>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="top-kv-container l-container">
-        <div class="top-kv-logo">
-          <img src={logoTall} alt="コヨミ ヨガ ピラティスのロゴ" loading="eager" decoding="async" width="292" height="330">
-        </div><!-- /.top-kv-logo -->
-        <div class="top-kv-cta">
-          <a href="https://coubic.com/yogapilates-koyomi" target="_blank">予約は<br>こちらから<span class="top-kv-cta-arrow"></span></a>
-        </div><!-- /.top-kv-cta -->
-      </div><!-- /.top-kv-container.l-container -->
-    </div><!-- /.top-kv -->
-
-    <main class="top-main">
-      <!-- conceptセクションbg設定 ここから -->
-      <div class="top-concept-bg">
-        <!-- top-catchphrase -->
-        <div class="top-catchphrase">
-          <div class="top-catchphrase-container l-container-s">
-            <p class="top-catchphrase-text"><span class="top-catchphrase-text-lg">心地</span>よい<span class="top-catchphrase-text-lg">毎日</span>をここから。<br>忙しい日常に、<span class="top-catchphrase-text-lg">心</span>と<span class="top-catchphrase-text-lg">体</span>を<span class="top-catchphrase-text-lg">解く時間</span>を。</p>
-            <div class="top-catchphrase-image">
-              <picture>
-                <source media="(max-width: 767px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg">
-                <source media="(min-width: 768px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-pc@2x.jpg">
-                <img src="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg" alt="" loading="lazy" decoding="async" width="240" height="160">
-              </picture>
-            </div><!-- /.top-catchphrase-image -->
-          </div><!-- /.top-catchphrase-container.l-container-s -->
-        </div><!-- /.top-catchphrase -->
-
-        <!-- top-concept -->
-        <section class="top-concept" id="concept">
-          <div class="l-container-s">
-            <div class="top-concept-title">
-              <SectionTitle titleText="コンセプト" />
-            </div><!-- /.top-concept-title -->
-            <div class="top-concept-section-body">
-              <div class="top-concept-description">
-                <p class="top-concept-text">月日と共に変わる心と身体。<br>歳を重ねることは日々の中で<br class="u-no-pc">自分を見つめ直す旅です。</p>
-                <p class="top-concept-text">ここは、がんばる女性たちが<br class="u-no-pc">ほっと一息つける場所。</p>
-                <p class="top-concept-text">忙しさに埋もれた心をそっとほどき、<br>あなた自身を大切にする時間を<br class="u-no-pc">お届けします。</p>
-                <p class="top-concept-text">ヨガで心を整え、<br class="u-no-pc">内側から軽くなる感覚を。<br>ピラティスで体を支え、<br class="u-no-pc">日々にゆとりをつくる。</p>
-                <p class="top-concept-text">季節の移ろいや、<br class="u-no-pc">月のリズムとともに、<br>誰もが安心して自分を取り戻せる、<br class="u-no-pc">そんな居場所を目指しています。</p>
-              </div><!-- /.top-concept-description -->
-            </div><!-- /.top-concept-section-body -->
-          </div><!-- /.l-container-s -->
-        </section><!-- /.top-concept -->
-
-        <!-- conceptセクションbg -->
-        <div class="top-concept-bg-image"></div>
-      </div><!-- /.top-concept-bg -->
-      <!-- conceptセクションbg設定 ここまで -->
-
-      <!-- top-programs -->
-      <section class="top-programs">
-        <div class="top-programs-title">
-          <h2 class="top-programs-title-text">女性の体のサイクルにあわせた<br class="u-no-pc">多彩なプログラム</h2>
-          <div class="top-programs-title-dec">
+  <!-- top-kv -->
+  <div class="top-kv">
+    <div class="splide top-kv-bg"  id="image-slider" aria-label="メインビジュアルの画像スライダー">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
             <picture>
-              <source media="(max-width: 767px)" srcset="/assets/images/programs/image-programs-title-dec-sp@2x.png">
-              <source media="(min-width: 768px)" srcset="/assets/images/programs/image-programs-title-dec-pc@2x.png">
-              <img src="/assets/images/programs/image-programs-title-dec-sp@2x.png" alt="" loading="lazy" decoding="async" width="250" height="11">
+              <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
+              <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
+              <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
             </picture>
-          </div><!-- /.top-programs-title-dec -->
-        </div><!-- /.top-programs-title -->
-        <div class="top-programs-section-body l-section-body">
-          <ul class="top-programs-list">
-            <li class="top-programs-item top-programs-item--01">
-              <dl class="top-programs-def-list">
-                <dt id="label-ninshin">妊娠期</dt>
-                <dd aria-labelledby="label-ninshin">
-                  マタニティヨガ
-                  <small class="top-programs-note">※妊娠16週目以降</small>
-                  <small class="top-programs-note">※医師の許可が必要</small>
-                </dd>
-              </dl>
+          </li>
+          <li class="splide__slide">
+            <picture>
+              <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png">
+              <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-02-pc@2x.png">
+              <img src="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+            </picture>
+          </li>
+          <li class="splide__slide">
+            <picture>
+              <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png">
+              <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-03-pc@2x.png">
+              <img src="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+            </picture>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="top-kv-container l-container">
+      <div class="top-kv-logo">
+        <img src={logoTall} alt="コヨミ ヨガ ピラティスのロゴ" loading="eager" decoding="async" width="292" height="330">
+      </div><!-- /.top-kv-logo -->
+      <div class="top-kv-cta">
+        <a href="https://coubic.com/yogapilates-koyomi" target="_blank">予約は<br>こちらから<span class="top-kv-cta-arrow"></span></a>
+      </div><!-- /.top-kv-cta -->
+    </div><!-- /.top-kv-container.l-container -->
+  </div><!-- /.top-kv -->
+
+  <main class="top-main">
+    <!-- conceptセクションbg設定 ここから -->
+    <div class="top-concept-bg">
+      <!-- top-catchphrase -->
+      <div class="top-catchphrase">
+        <div class="top-catchphrase-container l-container-s">
+          <p class="top-catchphrase-text"><span class="top-catchphrase-text-lg">心地</span>よい<span class="top-catchphrase-text-lg">毎日</span>をここから。<br>忙しい日常に、<span class="top-catchphrase-text-lg">心</span>と<span class="top-catchphrase-text-lg">体</span>を<span class="top-catchphrase-text-lg">解く時間</span>を。</p>
+          <div class="top-catchphrase-image">
+            <picture>
+              <source media="(max-width: 767px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg">
+              <source media="(min-width: 768px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-pc@2x.jpg">
+              <img src="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg" alt="" loading="lazy" decoding="async" width="240" height="160">
+            </picture>
+          </div><!-- /.top-catchphrase-image -->
+        </div><!-- /.top-catchphrase-container.l-container-s -->
+      </div><!-- /.top-catchphrase -->
+
+      <!-- top-concept -->
+      <section class="top-concept" id="concept">
+        <div class="l-container-s">
+          <div class="top-concept-title">
+            <SectionTitle titleText="コンセプト" />
+          </div><!-- /.top-concept-title -->
+          <div class="top-concept-section-body">
+            <div class="top-concept-description">
+              <p class="top-concept-text">月日と共に変わる心と身体。<br>歳を重ねることは日々の中で<br class="u-no-pc">自分を見つめ直す旅です。</p>
+              <p class="top-concept-text">ここは、がんばる女性たちが<br class="u-no-pc">ほっと一息つける場所。</p>
+              <p class="top-concept-text">忙しさに埋もれた心をそっとほどき、<br>あなた自身を大切にする時間を<br class="u-no-pc">お届けします。</p>
+              <p class="top-concept-text">ヨガで心を整え、<br class="u-no-pc">内側から軽くなる感覚を。<br>ピラティスで体を支え、<br class="u-no-pc">日々にゆとりをつくる。</p>
+              <p class="top-concept-text">季節の移ろいや、<br class="u-no-pc">月のリズムとともに、<br>誰もが安心して自分を取り戻せる、<br class="u-no-pc">そんな居場所を目指しています。</p>
+            </div><!-- /.top-concept-description -->
+          </div><!-- /.top-concept-section-body -->
+        </div><!-- /.l-container-s -->
+      </section><!-- /.top-concept -->
+
+      <!-- conceptセクションbg -->
+      <div class="top-concept-bg-image"></div>
+    </div><!-- /.top-concept-bg -->
+    <!-- conceptセクションbg設定 ここまで -->
+
+    <!-- top-programs -->
+    <section class="top-programs">
+      <div class="top-programs-title">
+        <h2 class="top-programs-title-text">女性の体のサイクルにあわせた<br class="u-no-pc">多彩なプログラム</h2>
+        <div class="top-programs-title-dec">
+          <picture>
+            <source media="(max-width: 767px)" srcset="/assets/images/programs/image-programs-title-dec-sp@2x.png">
+            <source media="(min-width: 768px)" srcset="/assets/images/programs/image-programs-title-dec-pc@2x.png">
+            <img src="/assets/images/programs/image-programs-title-dec-sp@2x.png" alt="" loading="lazy" decoding="async" width="250" height="11">
+          </picture>
+        </div><!-- /.top-programs-title-dec -->
+      </div><!-- /.top-programs-title -->
+      <div class="top-programs-section-body l-section-body">
+        <ul class="top-programs-list">
+          <li class="top-programs-item top-programs-item--01">
+            <dl class="top-programs-def-list">
+              <dt id="label-ninshin">妊娠期</dt>
+              <dd aria-labelledby="label-ninshin">
+                マタニティヨガ
+                <small class="top-programs-note">※妊娠16週目以降</small>
+                <small class="top-programs-note">※医師の許可が必要</small>
+              </dd>
+            </dl>
+          </li>
+          <li class="top-programs-item top-programs-item--02">
+            <dl class="top-programs-def-list">
+              <dt id="label-sango">産後ケア</dt>
+              <dd aria-labelledby="label-sango">プライベート<br>マシンピラティス</dd>
+            </dl>
+          </li>
+          <li class="top-programs-item top-programs-item--03">
+            <dl class="top-programs-def-list">
+              <dt id="label-fullmoon-newmoon">満月〜新月</dt>
+              <dd aria-labelledby="label-fullmoon-newmoon">デトックスヨガ</dd>
+            </dl>
+          </li>
+          <li class="top-programs-item top-programs-item--04">
+            <dl class="top-programs-def-list">
+              <dt id="label-stresscare">ストレスケア</dt>
+              <dd aria-labelledby="label-stresscare">モーニングヨガ</dd>
+              <dd aria-labelledby="label-stresscare">ストレス改善ヨガ</dd>
+              <dd aria-labelledby="label-stresscare">心を満たすヨガ</dd>
+            </dl>
+          </li>
+          <li class="top-programs-item top-programs-item--05">
+            <dl class="top-programs-def-list">
+              <dt id="label-bodymake">ボディメイク</dt>
+              <dd aria-labelledby="label-bodymake">姿勢改善ピラティス</dd>
+              <dd aria-labelledby="label-bodymake">くびれフローヨガ</dd>
+              <dd aria-labelledby="label-bodymake">季節の太陽礼拝</dd>
+            </dl>
+          </li>
+        </ul>
+        <div class="top-programs-images-sp l-container">
+          <div class="top-programs-images-sp-upper">
+            <img src="/assets/images/programs/pic-programs-sp-01@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+            <img src="/assets/images/programs/pic-programs-sp-02@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+            <img src="/assets/images/programs/pic-programs-sp-03@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+          </div><!-- /.top-programs-images-sp-upper -->
+          <div class="top-programs-images-sp-lower">
+            <img src="/assets/images/programs/pic-programs-sp-04@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+            <img src="/assets/images/programs/pic-programs-sp-05@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+          </div><!-- /.top-programs-images-sp-lower -->
+        </div><!-- /.top-programs-images-sp -->
+        <div class="top-programs-images-pc l-container">
+          <img src="/assets/images/programs/pic-programs-pc-01@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+          <img src="/assets/images/programs/pic-programs-pc-02@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+          <img src="/assets/images/programs/pic-programs-pc-03@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+          <img src="/assets/images/programs/pic-programs-pc-04@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+          <img src="/assets/images/programs/pic-programs-pc-05@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+        </div><!-- /.top-programs-images-pc -->
+      </div><!-- /.top-programs-section-body.l-section-body -->
+    </section><!-- /.top-programs -->
+
+    <!-- top-menu -->
+    <section class="top-menu" id="menu">
+      <div class="l-container-s">
+        <div class="top-menu-title">
+          <SectionTitle titleText="メニュー" />
+        </div><!-- /.top-menu-title -->
+        <div class="top-menu-section-body l-section-body">
+          <ul class="top-menu-list">
+            <li class="top-menu-item">
+              <div class="top-menu-lesson-title">
+                <LessonTitle
+                titleText="グループレッスン"
+                titleTextClass="c-lesson-title-text"
+                imgSrc="/assets/images/global/text-group-lesson.svg"
+                imgWidth="277"
+                imgHeight="100"
+                imgClass="c-lesson-title-image c-lesson-title-image--01"
+                />
+              </div><!-- /.top-menu-lesson-title -->
+              <div class="top-menu-item-header">
+                <div class="top-menu-description">
+                  <p class="top-menu-text">同じ想いを持つ仲間と一緒に、<br>心と体をゆっくりほどく時間を過ごしませんか?</p>
+                  <p class="top-menu-text">少人数制だから、慌ただしさはありません。</p>
+                  <p class="top-menu-text">落ち着いた空間で、 "誰かと一緒"の安心感が、<br>心の余裕と体の調和を<br>そっと育ててくれます。</p>
+                </div><!-- /.top-menu-description -->
+                <div class="top-menu-image">
+                  <img src="/assets/images/menu/pic-menu-group@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
+                </div><!-- /.top-menu-image -->
+              </div><!-- /.top-menu-item-header -->
+              <div class="top-menu-item-body">
+                <div class="top-menu-detail">
+                  <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
+                  <div class="top-menu-one-off">
+                    <dl class="top-menu-one-off-def-list">
+                      <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><span class="top-menu-plus">＋</span>60分レッスン</dt>
+                      <dd>
+                        <span aria-label="さんぜんごひゃくえん">
+                          <span class="top-menu-price">3,500</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                      </dd>
+                    </dl>
+                  </div><!-- /.top-menu-one-off -->
+                </div><!-- /.top-menu-detail -->
+                <div class="top-menu-detail">
+                  <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-beige">継続して通いたい方</h4>
+                  <div class="top-menu-continuation">
+                    <p class="top-menu-coupon-ticket">回数券</p>
+                    <dl class="top-menu-continuation-def-list">
+                      <dt>4回券</dt>
+                      <dd>
+                        <span aria-label="いちまんにせんはっぴゃくえん">
+                          <span class="top-menu-price">12,800</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                        <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんにひゃくえん">3,200円</span>)</span>
+                      </dd>
+                      <dt>8回券</dt>
+                      <dd>
+                        <span aria-label="にまんよんせんえん">
+                          <span class="top-menu-price">24,000</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                        <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんえん">3,000円</span>)</span>
+                      </dd>
+                    </dl>
+                  </div><!-- /.top-menu-continuation -->
+                  <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
+                </div><!-- /.top-menu-detail -->
+              </div><!-- /.top-menu-item-body -->
             </li>
-            <li class="top-programs-item top-programs-item--02">
-              <dl class="top-programs-def-list">
-                <dt id="label-sango">産後ケア</dt>
-                <dd aria-labelledby="label-sango">プライベート<br>マシンピラティス</dd>
-              </dl>
-            </li>
-            <li class="top-programs-item top-programs-item--03">
-              <dl class="top-programs-def-list">
-                <dt id="label-fullmoon-newmoon">満月〜新月</dt>
-                <dd aria-labelledby="label-fullmoon-newmoon">デトックスヨガ</dd>
-              </dl>
-            </li>
-            <li class="top-programs-item top-programs-item--04">
-              <dl class="top-programs-def-list">
-                <dt id="label-stresscare">ストレスケア</dt>
-                <dd aria-labelledby="label-stresscare">モーニングヨガ</dd>
-                <dd aria-labelledby="label-stresscare">ストレス改善ヨガ</dd>
-                <dd aria-labelledby="label-stresscare">心を満たすヨガ</dd>
-              </dl>
-            </li>
-            <li class="top-programs-item top-programs-item--05">
-              <dl class="top-programs-def-list">
-                <dt id="label-bodymake">ボディメイク</dt>
-                <dd aria-labelledby="label-bodymake">姿勢改善ピラティス</dd>
-                <dd aria-labelledby="label-bodymake">くびれフローヨガ</dd>
-                <dd aria-labelledby="label-bodymake">季節の太陽礼拝</dd>
-              </dl>
+            <li class="top-menu-item">
+              <div class="top-menu-lesson-title top-menu-lesson-title--private">
+                <LessonTitle
+                titleText="プライベートレッスン"
+                titleTextClass="c-lesson-title-text c-lesson-title-text--private"
+                imgSrc="/assets/images/global/text-private-lesson.svg"
+                imgWidth="299"
+                imgHeight="100"
+                imgClass="c-lesson-title-image c-lesson-title-image--02"
+                />
+              </div><!-- /.top-menu-lesson-title -->
+              <div class="top-menu-item-header">
+                <div class="top-menu-description">
+                  <p class="top-menu-text">誰にも気兼ねせず、<br>自分のペースで進められる特別なレッスン。</p>
+                  <p class="top-menu-text">心と体の状態に丁寧に向き合いながら、<br>一人ひとりに合わせて<br>必要なサポートをご提供します。</p>
+                  <p class="top-menu-text">"自分だけの時間”で、忙しい日常を少し離れて、<br>心地よいリズムを取り戻しませんか?</p>
+                </div><!-- /.top-menu-description -->
+                <div class="top-menu-image">
+                  <img src="/assets/images/menu/pic-menu-private@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
+                </div><!-- /.top-menu-image -->
+              </div><!-- /.top-menu-item-header -->
+              <div class="top-menu-item-body">
+                <div class="top-menu-detail">
+                  <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
+                  <div class="top-menu-one-off">
+                    <dl class="top-menu-one-off-def-list">
+                      <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><br><span class="top-menu-plus">＋</span>姿勢チェック<span class="top-menu-plus">＋</span>50分レッスン</dt>
+                      <dd>
+                        <span aria-label="ななせんごひゃくえん">
+                          <span class="top-menu-price">7,500</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                      </dd>
+                    </dl>
+                  </div><!-- /.top-menu-one-off -->
+                </div><!-- /.top-menu-detail -->
+                <div class="top-menu-detail">
+                  <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-skyblue">継続して通いたい方</h4>
+                  <div class="top-menu-continuation">
+                    <p class="top-menu-coupon-ticket">回数券</p>
+                    <dl class="top-menu-continuation-def-list">
+                      <dt>4回券</dt>
+                      <dd>
+                        <span aria-label="にまんはっせんはっぴゃくえん">
+                          <span class="top-menu-price">28,800</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                        <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんにひゃくえん">7,200円</span>)</span>
+                      </dd>
+                      <dt>8回券</dt>
+                      <dd>
+                        <span aria-label="ごまんろくせんえん">
+                          <span class="top-menu-price">56,000</span>
+                          <span class="top-menu-yen">円</span>
+                        </span>
+                        <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんえん">7,000円</span>)</span>
+                      </dd>
+                    </dl>
+                  </div><!-- /.top-menu-continuation -->
+                  <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
+                </div><!-- /.top-menu-detail -->
+              </div><!-- /.top-menu-item-body -->
             </li>
           </ul>
-          <div class="top-programs-images-sp l-container">
-            <div class="top-programs-images-sp-upper">
-              <img src="/assets/images/programs/pic-programs-sp-01@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
-              <img src="/assets/images/programs/pic-programs-sp-02@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
-              <img src="/assets/images/programs/pic-programs-sp-03@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
-            </div><!-- /.top-programs-images-sp-upper -->
-            <div class="top-programs-images-sp-lower">
-              <img src="/assets/images/programs/pic-programs-sp-04@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
-              <img src="/assets/images/programs/pic-programs-sp-05@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
-            </div><!-- /.top-programs-images-sp-lower -->
-          </div><!-- /.top-programs-images-sp -->
-          <div class="top-programs-images-pc l-container">
-            <img src="/assets/images/programs/pic-programs-pc-01@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
-            <img src="/assets/images/programs/pic-programs-pc-02@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
-            <img src="/assets/images/programs/pic-programs-pc-03@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
-            <img src="/assets/images/programs/pic-programs-pc-04@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
-            <img src="/assets/images/programs/pic-programs-pc-05@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
-          </div><!-- /.top-programs-images-pc -->
-        </div><!-- /.top-programs-section-body.l-section-body -->
-      </section><!-- /.top-programs -->
+        </div><!-- /.top-menu-section-body.l-section-body -->
+      </div><!-- l-container-s -->
+    </section><!-- /.top-menu -->
 
-      <!-- top-menu -->
-      <section class="top-menu" id="menu">
-        <div class="l-container-s">
-          <div class="top-menu-title">
-            <SectionTitle titleText="メニュー" />
-          </div><!-- /.top-menu-title -->
-          <div class="top-menu-section-body l-section-body">
-            <ul class="top-menu-list">
-              <li class="top-menu-item">
-                <div class="top-menu-lesson-title">
-                  <LessonTitle
-                  titleText="グループレッスン"
-                  titleTextClass="c-lesson-title-text"
-                  imgSrc="/assets/images/global/text-group-lesson.svg"
-                  imgWidth="277"
-                  imgHeight="100"
-                  imgClass="c-lesson-title-image c-lesson-title-image--01"
-                  />
-                </div><!-- /.top-menu-lesson-title -->
-                <div class="top-menu-item-header">
-                  <div class="top-menu-description">
-                    <p class="top-menu-text">同じ想いを持つ仲間と一緒に、<br>心と体をゆっくりほどく時間を過ごしませんか?</p>
-                    <p class="top-menu-text">少人数制だから、慌ただしさはありません。</p>
-                    <p class="top-menu-text">落ち着いた空間で、 "誰かと一緒"の安心感が、<br>心の余裕と体の調和を<br>そっと育ててくれます。</p>
-                  </div><!-- /.top-menu-description -->
-                  <div class="top-menu-image">
-                    <img src="/assets/images/menu/pic-menu-group@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
-                  </div><!-- /.top-menu-image -->
-                </div><!-- /.top-menu-item-header -->
-                <div class="top-menu-item-body">
-                  <div class="top-menu-detail">
-                    <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
-                    <div class="top-menu-one-off">
-                      <dl class="top-menu-one-off-def-list">
-                        <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><span class="top-menu-plus">＋</span>60分レッスン</dt>
-                        <dd>
-                          <span aria-label="さんぜんごひゃくえん">
-                            <span class="top-menu-price">3,500</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                        </dd>
-                      </dl>
-                    </div><!-- /.top-menu-one-off -->
-                  </div><!-- /.top-menu-detail -->
-                  <div class="top-menu-detail">
-                    <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-beige">継続して通いたい方</h4>
-                    <div class="top-menu-continuation">
-                      <p class="top-menu-coupon-ticket">回数券</p>
-                      <dl class="top-menu-continuation-def-list">
-                        <dt>4回券</dt>
-                        <dd>
-                          <span aria-label="いちまんにせんはっぴゃくえん">
-                            <span class="top-menu-price">12,800</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                          <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんにひゃくえん">3,200円</span>)</span>
-                        </dd>
-                        <dt>8回券</dt>
-                        <dd>
-                          <span aria-label="にまんよんせんえん">
-                            <span class="top-menu-price">24,000</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                          <span class="top-menu-unit-price">(1回あたり<span aria-label="さんぜんえん">3,000円</span>)</span>
-                        </dd>
-                      </dl>
-                    </div><!-- /.top-menu-continuation -->
-                    <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
-                  </div><!-- /.top-menu-detail -->
-                </div><!-- /.top-menu-item-body -->
-              </li>
-              <li class="top-menu-item">
-                <div class="top-menu-lesson-title top-menu-lesson-title--private">
+    <!-- top-flow -->
+    <section class="top-flow">
+      <div class="l-container-s">
+        <h2 class="top-flow-title">おすすめの流れ</h2>
+        <div class="top-flow-section-body l-section-body">
+          <ol class="top-flow-list">
+            <li class="top-flow-item">
+              <div class="top-flow-description">
+                <div class="top-flow-heading">
+                  <div class="top-flow-heading-num">
+                    <img src="/assets/images/flow/text-flow-01.svg" alt="01" loading="lazy" decoding="async" width="105" height="119">
+                  </div>
                   <LessonTitle
                   titleText="プライベートレッスン"
                   titleTextClass="c-lesson-title-text c-lesson-title-text--private"
@@ -395,303 +526,151 @@ const {
                   imgHeight="100"
                   imgClass="c-lesson-title-image c-lesson-title-image--02"
                   />
-                </div><!-- /.top-menu-lesson-title -->
-                <div class="top-menu-item-header">
-                  <div class="top-menu-description">
-                    <p class="top-menu-text">誰にも気兼ねせず、<br>自分のペースで進められる特別なレッスン。</p>
-                    <p class="top-menu-text">心と体の状態に丁寧に向き合いながら、<br>一人ひとりに合わせて<br>必要なサポートをご提供します。</p>
-                    <p class="top-menu-text">"自分だけの時間”で、忙しい日常を少し離れて、<br>心地よいリズムを取り戻しませんか?</p>
-                  </div><!-- /.top-menu-description -->
-                  <div class="top-menu-image">
-                    <img src="/assets/images/menu/pic-menu-private@2x.jpg" alt="" loading="lazy" decoding="async" width="570" height="330">
-                  </div><!-- /.top-menu-image -->
-                </div><!-- /.top-menu-item-header -->
-                <div class="top-menu-item-body">
-                  <div class="top-menu-detail">
-                    <h4 class="top-menu-detail-heading">単発で通いたい方</h4>
-                    <div class="top-menu-one-off">
-                      <dl class="top-menu-one-off-def-list">
-                        <dt>カウンセリング<span class="top-menu-first-time">(初回のみ)</span><br><span class="top-menu-plus">＋</span>姿勢チェック<span class="top-menu-plus">＋</span>50分レッスン</dt>
-                        <dd>
-                          <span aria-label="ななせんごひゃくえん">
-                            <span class="top-menu-price">7,500</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                        </dd>
-                      </dl>
-                    </div><!-- /.top-menu-one-off -->
-                  </div><!-- /.top-menu-detail -->
-                  <div class="top-menu-detail">
-                    <h4 class="top-menu-detail-heading top-menu-detail-heading--bg-skyblue">継続して通いたい方</h4>
-                    <div class="top-menu-continuation">
-                      <p class="top-menu-coupon-ticket">回数券</p>
-                      <dl class="top-menu-continuation-def-list">
-                        <dt>4回券</dt>
-                        <dd>
-                          <span aria-label="にまんはっせんはっぴゃくえん">
-                            <span class="top-menu-price">28,800</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                          <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんにひゃくえん">7,200円</span>)</span>
-                        </dd>
-                        <dt>8回券</dt>
-                        <dd>
-                          <span aria-label="ごまんろくせんえん">
-                            <span class="top-menu-price">56,000</span>
-                            <span class="top-menu-yen">円</span>
-                          </span>
-                          <span class="top-menu-unit-price">(1回あたり<span aria-label="ななせんえん">7,000円</span>)</span>
-                        </dd>
-                      </dl>
-                    </div><!-- /.top-menu-continuation -->
-                    <small class="top-menu-note">※詳細は店頭にてご案内いたします</small>
-                  </div><!-- /.top-menu-detail -->
-                </div><!-- /.top-menu-item-body -->
-              </li>
-            </ul>
-          </div><!-- /.top-menu-section-body.l-section-body -->
-        </div><!-- l-container-s -->
-      </section><!-- /.top-menu -->
+                </div><!-- /.top-flow-heading -->
+                <p class="top-flow-text">まずはプライベートレッスンで<br>ご自身の体の癖や心の癒し方を知り、<br>その後、 グループレッスンで<br>体と心が整っていく感覚を<br class="u-no-pc">深めるのがおすすめ。</p>
+              </div><!-- /.top-flow-description -->
+              <div class="top-flow-image">
+                <img src="/assets/images/flow/pic-flow-private@2x.png" alt="" loading="lazy" decoding="async" width="493" height="356">
+              </div><!-- /.top-flow-image -->
+            </li>
+            <li class="top-flow-item top-flow-item--02">
+              <div class="top-flow-description top-flow-description--02">
+                <div class="top-flow-heading top-flow-heading--02">
+                  <div class="top-flow-heading-num top-flow-heading-num--02">
+                    <img src="/assets/images/flow/text-flow-02.svg" alt="02" loading="lazy" decoding="async" width="113" height="119">
+                  </div>
+                  <LessonTitle
+                  titleText="グループレッスン"
+                  titleTextClass="c-lesson-title-text c-lesson-title-text--group"
+                  imgSrc="/assets/images/global/text-group-lesson.svg"
+                  imgWidth="277"
+                  imgHeight="100"
+                  imgClass="c-lesson-title-image c-lesson-title-image--01"
+                  />
+                </div><!-- /.top-flow-heading -->
+                <p class="top-flow-text">段階的に進めることで、<br>自分自身の状態を<br class="u-no-pc">コントロールする力が身につき、<br>忙しい毎日の中でも、<br>心と体に向き合うゆとりが生まれます。</p>
+              </div><!-- /.top-flow-description -->
+              <div class="top-flow-image top-flow-image--02">
+                <img src="/assets/images/flow/pic-flow-group@2x.png" alt="" loading="lazy" decoding="async" width="454" height="368">
+              </div><!-- /.top-flow-image -->
+            </li>
+          </ol>
+          <div class="top-flow-cta">
+            <ButtonCta />
+          </div><!-- /.top-flow-cta -->
+        </div><!-- /.top-flow-section-body.l-section-body -->
+      </div><!-- /.l-container-s -->
+    </section><!-- /.top-flow -->
 
-      <!-- top-flow -->
-      <section class="top-flow">
-        <div class="l-container-s">
-          <h2 class="top-flow-title">おすすめの流れ</h2>
-          <div class="top-flow-section-body l-section-body">
-            <ol class="top-flow-list">
-              <li class="top-flow-item">
-                <div class="top-flow-description">
-                  <div class="top-flow-heading">
-                    <div class="top-flow-heading-num">
-                      <img src="/assets/images/flow/text-flow-01.svg" alt="01" loading="lazy" decoding="async" width="105" height="119">
-                    </div>
-                    <LessonTitle
-                    titleText="プライベートレッスン"
-                    titleTextClass="c-lesson-title-text c-lesson-title-text--private"
-                    imgSrc="/assets/images/global/text-private-lesson.svg"
-                    imgWidth="299"
-                    imgHeight="100"
-                    imgClass="c-lesson-title-image c-lesson-title-image--02"
-                    />
-                  </div><!-- /.top-flow-heading -->
-                  <p class="top-flow-text">まずはプライベートレッスンで<br>ご自身の体の癖や心の癒し方を知り、<br>その後、 グループレッスンで<br>体と心が整っていく感覚を<br class="u-no-pc">深めるのがおすすめ。</p>
-                </div><!-- /.top-flow-description -->
-                <div class="top-flow-image">
-                  <img src="/assets/images/flow/pic-flow-private@2x.png" alt="" loading="lazy" decoding="async" width="493" height="356">
-                </div><!-- /.top-flow-image -->
-              </li>
-              <li class="top-flow-item top-flow-item--02">
-                <div class="top-flow-description top-flow-description--02">
-                  <div class="top-flow-heading top-flow-heading--02">
-                    <div class="top-flow-heading-num top-flow-heading-num--02">
-                      <img src="/assets/images/flow/text-flow-02.svg" alt="02" loading="lazy" decoding="async" width="113" height="119">
-                    </div>
-                    <LessonTitle
-                    titleText="グループレッスン"
-                    titleTextClass="c-lesson-title-text c-lesson-title-text--group"
-                    imgSrc="/assets/images/global/text-group-lesson.svg"
-                    imgWidth="277"
-                    imgHeight="100"
-                    imgClass="c-lesson-title-image c-lesson-title-image--01"
-                    />
-                  </div><!-- /.top-flow-heading -->
-                  <p class="top-flow-text">段階的に進めることで、<br>自分自身の状態を<br class="u-no-pc">コントロールする力が身につき、<br>忙しい毎日の中でも、<br>心と体に向き合うゆとりが生まれます。</p>
-                </div><!-- /.top-flow-description -->
-                <div class="top-flow-image top-flow-image--02">
-                  <img src="/assets/images/flow/pic-flow-group@2x.png" alt="" loading="lazy" decoding="async" width="454" height="368">
-                </div><!-- /.top-flow-image -->
-              </li>
-            </ol>
-            <div class="top-flow-cta">
+    <!-- top-faq -->
+    <section class="top-faq" id="faq">
+      <div class="l-container-s">
+        <div class="top-faq-title">
+          <SectionTitle
+            titleText="よくある質問"
+            textClass="c-section-title-text c-section-title-text--white"
+            decClass="c-section-title-dec c-section-title-dec--white"
+            decClassRight="c-section-title-dec c-section-title-dec--white c-section-title-dec--right"
+          />
+        </div><!-- /.top-faq-title -->
+        <div class="top-faq-section-body l-section-body">
+          <ul class="top-faq-list">
+            <li class="top-faq-item">
+              <dl class="top-faq-def-list">
+                <dt>
+                  <span class="top-faq-q" aria-label="質問">Q</span>
+                  <span class="top-faq-q-text">服装について</span>
+                </dt>
+                <dd>動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調が可能です。</dd>
+              </dl>
+            </li>
+            <li class="top-faq-item">
+              <dl class="top-faq-def-list">
+                <dt>
+                  <span class="top-faq-q" aria-label="質問">Q</span>
+                  <span class="top-faq-q-text">駐車場・駐輪場について</span>
+                </dt>
+                <dd>提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。</dd>
+              </dl>
+            </li>
+            <li class="top-faq-item">
+              <dl class="top-faq-def-list">
+                <dt>
+                  <span class="top-faq-q" aria-label="質問">Q</span>
+                  <span class="top-faq-q-text">持ちものについて</span>
+                </dt>
+                <dd>ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。<br>※マットやレッスンで使用するアイテムは、こちらでご用意しております。</dd>
+              </dl>
+            </li>
+            <li class="top-faq-item">
+              <dl class="top-faq-def-list">
+                <dt>
+                  <span class="top-faq-q" aria-label="質問">Q</span>
+                  <span class="top-faq-q-text">男性の入店について</span>
+                </dt>
+                <dd>施設は女性専用のため、男性のご入店はお断りしております。</dd>
+              </dl>
+            </li>
+            <li class="top-faq-item">
+              <dl class="top-faq-def-list">
+                <dt>
+                  <span class="top-faq-q" aria-label="質問">Q</span>
+                  <span class="top-faq-q-text">年齢制限について</span>
+                </dt>
+                <dd>中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。</dd>
+              </dl>
+            </li>
+          </ul>
+        </div><!-- /.top-faq-section-body.l-section-body -->
+      </div><!-- /.l-container-s -->
+    </section><!-- /.top-faq -->
+
+    <!-- contactセクションbg設定 ここから -->
+    <div class="top-contact-bg">
+      <!-- top-access -->
+      <section class="top-access" id="access">
+        <div class="l-container">
+          <div class="top-access-title">
+            <SectionTitle titleText="アクセス" />
+          </div><!-- /.top-access-title -->
+          <div class="top-access-section-body l-section-body">
+            <div class="top-access-sp-logo">
+              <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
+            </div><!-- /.top-access-sp-logo -->
+            <div class="top-access-wrapper">
+              <div class="top-access-info">
+                <div class="top-access-pc-logo">
+                  <img src="/assets/images/global/logo-wide.svg" alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
+                </div><!-- /.top-access-pc-logo -->
+                <div class="top-access-description">
+                  <p class="top-access-text">〒359-0044<br>埼玉県所沢市松葉町11-11 <span aria-label="2階">2F</span><br><small class="top-access-note">※刑部歯科の2階です</small></p>
+                  <p class="top-access-text">西武新宿線 新所沢駅から徒歩2分</p>
+                </div><!-- /.top-access-description -->
+              </div><!-- /.top-access-info -->
+              <div class="top-access-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6471.432761231846!2d139.45373!3d35.8068955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018dd9b23c51e77%3A0x9af0a8d2fc5213c3!2skoyomi%20yoga%20pilates!5e0!3m2!1sja!2sjp!4v1744546051226!5m2!1sja!2sjp" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div><!-- /.top-access-map -->
+            </div><!-- /.top-access-wrapper -->
+            <div class="top-access-cta">
               <ButtonCta />
-            </div><!-- /.top-flow-cta -->
-          </div><!-- /.top-flow-section-body.l-section-body -->
-        </div><!-- /.l-container-s -->
-      </section><!-- /.top-flow -->
+            </div><!-- /.top-access-cta -->
+          </div><!-- /.top-access-section-body.l-section-body -->
+        </div><!-- /.l-container -->
+      </section><!-- /.top-access -->
 
-      <!-- top-faq -->
-      <section class="top-faq" id="faq">
-        <div class="l-container-s">
-          <div class="top-faq-title">
-            <SectionTitle
-              titleText="よくある質問"
-              textClass="c-section-title-text c-section-title-text--white"
-              decClass="c-section-title-dec c-section-title-dec--white"
-              decClassRight="c-section-title-dec c-section-title-dec--white c-section-title-dec--right"
-            />
-          </div><!-- /.top-faq-title -->
-          <div class="top-faq-section-body l-section-body">
-            <ul class="top-faq-list">
-              <li class="top-faq-item">
-                <dl class="top-faq-def-list">
-                  <dt>
-                    <span class="top-faq-q" aria-label="質問">Q</span>
-                    <span class="top-faq-q-text">服装について</span>
-                  </dt>
-                  <dd>動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調が可能です。</dd>
-                </dl>
-              </li>
-              <li class="top-faq-item">
-                <dl class="top-faq-def-list">
-                  <dt>
-                    <span class="top-faq-q" aria-label="質問">Q</span>
-                    <span class="top-faq-q-text">駐車場・駐輪場について</span>
-                  </dt>
-                  <dd>提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。</dd>
-                </dl>
-              </li>
-              <li class="top-faq-item">
-                <dl class="top-faq-def-list">
-                  <dt>
-                    <span class="top-faq-q" aria-label="質問">Q</span>
-                    <span class="top-faq-q-text">持ちものについて</span>
-                  </dt>
-                  <dd>ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。<br>※マットやレッスンで使用するアイテムは、こちらでご用意しております。</dd>
-                </dl>
-              </li>
-              <li class="top-faq-item">
-                <dl class="top-faq-def-list">
-                  <dt>
-                    <span class="top-faq-q" aria-label="質問">Q</span>
-                    <span class="top-faq-q-text">男性の入店について</span>
-                  </dt>
-                  <dd>施設は女性専用のため、男性のご入店はお断りしております。</dd>
-                </dl>
-              </li>
-              <li class="top-faq-item">
-                <dl class="top-faq-def-list">
-                  <dt>
-                    <span class="top-faq-q" aria-label="質問">Q</span>
-                    <span class="top-faq-q-text">年齢制限について</span>
-                  </dt>
-                  <dd>中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。</dd>
-                </dl>
-              </li>
-            </ul>
-          </div><!-- /.top-faq-section-body.l-section-body -->
-        </div><!-- /.l-container-s -->
-      </section><!-- /.top-faq -->
+      <!-- top-contact -->
+      <section class="top-contact">
+        <ContactSection />
+      </section><!-- /.top-contact -->
 
-      <!-- contactセクションbg設定 ここから -->
-      <div class="top-contact-bg">
-        <!-- top-access -->
-        <section class="top-access" id="access">
-          <div class="l-container">
-            <div class="top-access-title">
-              <SectionTitle titleText="アクセス" />
-            </div><!-- /.top-access-title -->
-            <div class="top-access-section-body l-section-body">
-              <div class="top-access-sp-logo">
-                <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
-              </div><!-- /.top-access-sp-logo -->
-              <div class="top-access-wrapper">
-                <div class="top-access-info">
-                  <div class="top-access-pc-logo">
-                    <img src="/assets/images/global/logo-wide.svg" alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
-                  </div><!-- /.top-access-pc-logo -->
-                  <div class="top-access-description">
-                    <p class="top-access-text">〒359-0044<br>埼玉県所沢市松葉町11-11 <span aria-label="2階">2F</span><br><small class="top-access-note">※刑部歯科の2階です</small></p>
-                    <p class="top-access-text">西武新宿線 新所沢駅から徒歩2分</p>
-                  </div><!-- /.top-access-description -->
-                </div><!-- /.top-access-info -->
-                <div class="top-access-map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6471.432761231846!2d139.45373!3d35.8068955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018dd9b23c51e77%3A0x9af0a8d2fc5213c3!2skoyomi%20yoga%20pilates!5e0!3m2!1sja!2sjp!4v1744546051226!5m2!1sja!2sjp" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div><!-- /.top-access-map -->
-              </div><!-- /.top-access-wrapper -->
-              <div class="top-access-cta">
-                <ButtonCta />
-              </div><!-- /.top-access-cta -->
-            </div><!-- /.top-access-section-body.l-section-body -->
-          </div><!-- /.l-container -->
-        </section><!-- /.top-access -->
-
-        <!-- top-contact -->
-        <section class="top-contact">
-          <ContactSection />
-        </section><!-- /.top-contact -->
-
-        <!-- contactセクションbg -->
-        <div class="top-contact-bg-image"></div>
-      </div><!-- /.top-contact-bg -->
-      <!-- contactセクションbg設定 ここまで -->
-    </main>
-
-    <!-- footer -->
-    <footer class="footer">
-      <div class="footer-container l-container">
-        <div class="footer-logo footer-logo--sp">
-          <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
-        </div><!-- /.footer-logo -->
-        <div class="footer-logo footer-logo--pc">
-          <img src={logoTall} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="292" height="330">
-        </div><!-- /.footer-logo -->
-        <div class="footer-content">
-          <nav class="footer-nav">
-            <ul class="footer-nav-list">
-              <li class="footer-nav-item">
-                <a href="/">トップ</a>
-              </li>
-              {navList.map((navList_item) =>
-                <li class="footer-nav-item">
-                  <a href={navList_item.href}>{navList_item.label}</a>
-                </li>
-              )}
-              <li class="footer-nav-item">
-                <a href="https://coubic.com/yogapilates-koyomi" target="_blank">ご予約サイト</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="footer-bottom">
-            <div class="footer-links">
-              <ul class="footer-links-list">
-                <li class="footer-links-item">
-                  <a href="/law">特定商取引法に基づく表記</a>
-                </li>
-                <li class="footer-links-item">
-                  <a href="/privacy-policy">プライバシーポリシー</a>
-                </li>
-              </ul>
-              <ul class="footer-sns">
-                <li class="footer-sns-item">
-                  <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
-                    <img src="/assets/images/global/icon-line.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
-                  </a>
-                </li>
-                <li class="footer-sns-item">
-                  <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インタグラムを見る">
-                    <img src="/assets/images/global/icon-instagram.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
-                  </a>
-                </li>
-              </ul>
-            </div><!-- /.footer-links -->
-            <small class="footer-copyright" aria-label="著作権 2025 コヨミ ヨガ ピラティス">&copy; 2025 koyomi yoga pilates</small>
-          </div><!-- /.footer-bottom -->
-        </div><!-- /.footer-content -->
-      </div><!-- /.footer-container.l-container -->
-    </footer><!-- /.footer -->
-  </body>
-</html>
+      <!-- contactセクションbg -->
+      <div class="top-contact-bg-image"></div>
+    </div><!-- /.top-contact-bg -->
+    <!-- contactセクションbg設定 ここまで -->
+  </main>
+</Layout>
 
 <script>
-  // hamburger menu
-  document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.querySelector(".header-hamburger");
-    const headerLinks = document.querySelector(".header-link");
-    const navLinks = document.querySelectorAll(".header-link a");
-
-    hamburger.addEventListener("click", function () {
-      this.classList.toggle("active");
-      headerLinks.classList.toggle("active");
-    });
-
-    navLinks.forEach(function (link) {
-      link.addEventListener("click", function () {
-        hamburger.classList.remove("active");
-        headerLinks.classList.remove("active");
-      });
-    });
-  });
-
   // slider (splide)
   import Splide from '@splidejs/splide';
   document.addEventListener( 'DOMContentLoaded', function() {
@@ -708,401 +687,8 @@ const {
   });
 </script>
 
-
 <style lang="scss">
   @use '../styles/breakpoints' as *;
-
-  // header
-  .header {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    height: 70px;
-    background-color: var(--color-base);
-    font-size: 14px;
-    letter-spacing: .1em;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header-logo {
-    width: 100%;
-    max-width: 141px;
-
-    a {
-      display: block;
-    }
-
-    img {
-      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
-    }
-  }
-
-  .header-sp-reservation {
-    display: none;
-  }
-
-  .header-hamburger {
-
-  }
-
-  .header-link {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .header-nav {
-  }
-
-  .header-nav-list {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .header-nav-item {
-    &--top {
-      display: none;
-    }
-
-    a {
-      display: block;
-      padding: 8px 0;
-      transition: opacity .3s;
-    }
-  }
-
-  .header-external-link {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .header-reservation {
-    &--pc {
-      display: grid;
-      place-items: center;
-      width: 110px;
-      height: 30px;
-      border: 3px solid var(--color-main);
-      color: var(--color-base);
-      position: relative;
-      transition: border-width .3s ease, background-color .3s ease, color .3s ease;
-
-      &::before,
-      &::after {
-        content: "";
-        transition: width .3s ease, height .3s ease, background-color .3s ease;
-      }
-
-      &::before {
-        width: 10px;
-        height: 10px;
-        background-color: var(--color-base);
-        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-        position: absolute;
-        top: calc(50% + 7px);
-        left: calc(50% + 47px);
-        transform: translate(-50%, -50%);
-      }
-
-      &::after {
-        width: 100%;
-        height: 100%;
-        background-color: var(--color-main);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        z-index: -1;
-      }
-    }
-
-    &--sp {
-      display: none;
-    }
-  }
-
-  .header-sns {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .header-sns-item {
-    a {
-      transition: opacity .3s;
-    }
-
-    img {
-      filter: invert(28%) sepia(96%) saturate(221%) hue-rotate(344deg) brightness(96%) contrast(81%);
-    }
-  }
-
-  @media (any-hover: hover) {
-    .header-nav-item {
-      a {
-        &:hover {
-          opacity: .6;
-        }
-      }
-    }
-
-    .header-reservation {
-      &--pc {
-        &:hover {
-          border-width: 1px;
-          background-color: var(--color-base);
-          color: var(--color-main);
-
-          &::before {
-            background-color: var(--color-main);
-          }
-
-          &::after {
-            width: calc(100% - 2px);
-            height: calc(100% - 2px);
-            background-color: var(--color-base);
-          }
-        }
-      }
-    }
-
-    .header-sns-item {
-      a {
-        &:hover {
-          opacity: .6;
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    .header {
-      height: 48px;
-    }
-
-    .header-container {
-      width: 100%;
-      padding: 0 calc(20 var(--vw-sp));
-      position: relative;
-    }
-
-    .header-logo {
-      max-width: 78px;
-    }
-
-    // header-sp-reservation
-    .header-sp-reservation {
-      display: grid;
-      place-items: center;
-      width: 69px;
-      height: 24px;
-      margin-right: calc(15px + 23px);
-      font-size: 10px;
-      background-color: var(--color-main);
-      color: var(--color-base);
-    }
-
-    // hamburger icon
-    .header-hamburger {
-      width: 23px;
-      height: 48px;
-      margin: auto 0;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: calc(20 var(--vw-sp));
-      z-index: 30;
-    }
-
-    .header-hamburger-icon {
-      display: inline-block;
-      width: 23px;
-      height: 1px;
-      background-color: var(--color-main);
-      position: absolute;
-      left: 0;
-      transition: all .3s ease;
-
-      &:nth-of-type(1) {
-        top: 16px;
-      }
-
-      &:nth-of-type(2) {
-        top: 24px;
-      }
-
-      &:nth-of-type(3) {
-        top: 32px;
-      }
-    }
-
-    .header-hamburger.active {
-      .header-hamburger-icon {
-        background-color: var(--color-base);
-      }
-    }
-
-    // animation
-    .header-hamburger span:nth-of-type(1) {
-      animation: btn07-bar01 .6s forwards;
-    }
-    @keyframes btn07-bar01 {
-      0% {
-        transform: translateY(8px) rotate(45deg);
-      }
-      50% {
-        transform: translateY(8px) rotate(0);
-      }
-      100% {
-        transform: translateY(0) rotate(0);
-      }
-    }
-    .header-hamburger span:nth-of-type(2) {
-      transition: all .25s .25s;
-      opacity: 1;
-    }
-    .header-hamburger span:nth-of-type(3) {
-      animation: btn07-bar03 .6s forwards;
-    }
-    @keyframes btn07-bar03 {
-      0% {
-        transform: translateY(-8px) rotate(-45deg);
-      }
-      50% {
-        transform: translateY(-8px) rotate(0);
-      }
-      100% {
-        transform: translateY(0) rotate(0);
-      }
-    }
-    .header-hamburger.active span:nth-of-type(1) {
-      animation: active-btn07-bar01 .6s forwards;
-    }
-    @keyframes active-btn07-bar01 {
-      0% {
-        transform: translateY(0) rotate(0);
-      }
-      50% {
-        transform: translateY(8px) rotate(0);
-      }
-      100% {
-        transform: translateY(8px) rotate(45deg);
-      }
-    }
-    .header-hamburger.active span:nth-of-type(2) {
-      opacity: 0;
-    }
-    .header-hamburger.active span:nth-of-type(3) {
-      animation: active-btn07-bar03 .6s forwards;
-    }
-    @keyframes active-btn07-bar03 {
-      0% {
-        transform: translateY(0) rotate(0);
-      }
-      50% {
-        transform: translateY(-8px) rotate(0);
-      }
-      100% {
-        transform: translateY(-8px) rotate(-45deg);
-      }
-    }
-
-    // hamburger menu
-    .header-link {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-      width: 69.3%;
-      height: 100vh;
-      padding: 84px 24px 60px 24px;
-      background-color: var(--color-main);
-      color: var(--color-base);
-      position: fixed;
-      top: 0;
-      right: -70%;
-      z-index: 20;
-      overflow: auto;
-      transition: all .6s ease;
-
-      &.active {
-        right: 0;
-      }
-    }
-
-    .header-nav {
-      width: 100%;
-    }
-
-    .header-nav-list {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .header-nav-item {
-      width: 100%;
-      max-width: 150px;
-      &--top {
-        display: block;
-      }
-    }
-
-    .header-external-link {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
-    .header-reservation {
-      &--pc {
-        display: none;
-      }
-
-      &--sp {
-        display: block;
-        width: fit-content;
-        height: 30px;
-        padding: 4px 19px;
-        border: 1px solid;
-        position: relative;
-
-        &::after {
-          content: "";
-          width: 10px;
-          height: 10px;
-          background-color: var(--color-base);
-          clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-          position: absolute;
-          right: 2.5px;
-          bottom: 2.5px;
-        }
-      }
-    }
-
-    .header-sns {
-      gap: 24px;
-    }
-
-    .header-sns-item {
-      img {
-        filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
-      }
-    }
-
-  }
 
   // top-kv
   .top-kv {
@@ -2304,324 +1890,6 @@ const {
       width: 2000px;
       height: 680px;
       background-image: url(/assets/images/contact/bg-contact-pc@2x.png);
-    }
-  }
-
-  // footer
-  .footer {
-    padding-top: 42px;
-    margin: auto;
-    color: var(--color-base);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    overflow: hidden;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-    }
-
-    &::before {
-      width: 800px;
-      height: 160px;
-      background-image: url(/assets/images/global/bg-footer-sp.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center center;
-      top: 0;
-      left: 50%;
-      translate: -50%;
-    }
-
-    &::after {
-      display: block;
-      width: 100%;
-      height: 86px;
-      background-color: var(--color-main);
-      top: 158px;
-      left: 0;
-    }
-  }
-
-  .footer-container {
-    max-width: 370px;
-  }
-
-  .footer-logo--sp {
-    img {
-      width: 170px;
-      height: 54px;
-      filter: invert(100%) sepia(12%) saturate(2000%) hue-rotate(303deg) brightness(104%) contrast(94%);
-    }
-  }
-
-  .footer-logo--pc {
-    display: none;
-  }
-
-  .footer-content {
-    margin-top: 16px;
-  }
-
-  .footer-nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px 0;
-  }
-
-  .footer-nav-item {
-    position: relative;
-
-    &:nth-child(1),
-    &:nth-child(2),
-    &:nth-child(3),
-    &:nth-child(5),
-    &:nth-child(6) {
-      margin-right: min(25px, calc(18 var(--vw-sp)));
-
-      &::after {
-        content: "";
-        width: 1px;
-        height: 12px;
-        margin: auto;
-        background-color: var(--color-base);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: max(-25px, calc(-18 var(--vw-sp)));
-      }
-    }
-
-    &:nth-child(2),
-    &:nth-child(3),
-    &:nth-child(4),
-    &:nth-child(6),
-    &:nth-child(7) {
-      margin-left: min(25px, calc(18 var(--vw-sp)));
-    }
-
-    a {
-      display: block;
-      padding: 4px 0;
-      font-size: 12px;
-      letter-spacing: .1em;
-    }
-  }
-
-  .footer-bottom {
-    height: 79px;
-    padding-top: 11px;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-links-list {
-    display: flex;
-    gap: 21px;
-    margin-top: 7px;
-  }
-
-  .footer-links-item {
-    position: relative;
-
-    &:first-child::after {
-      content: "";
-      width: 1px;
-      height: 10px;
-      margin: auto;
-      background-color: var(--color-base);
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: -11px;
-
-    }
-    a {
-      display: block;
-      padding: 4px 0;
-      font-size: 10px;
-    }
-  }
-
-  .footer-sns {
-    display: flex;
-    gap: 20px;
-  }
-
-  .footer-sns-item {
-    img {
-      width: 20px;
-      height: 20px;
-      filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
-    }
-  }
-
-  .footer-copyright {
-    display: block;
-    margin-top: 5px;
-    font-size: 10px;
-    letter-spacing: .02em;
-  }
-
-  @include mq() {
-    .footer {
-      padding-top: 62px;
-      margin: auto;
-      // 最終的にheightはautoに（削除）
-      height: 240px;
-
-      &::before {
-        width: 2000px;
-        height: 240px;
-        background-image: url(/assets/images/global/bg-footer-pc.svg);
-      }
-
-      &::after {
-        display: none;
-      }
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 40px;
-      max-width: calc(var(--width-content) + 40px * 2);
-    }
-
-    .footer-logo--sp {
-      display: none;
-    }
-
-    .footer-logo--pc {
-      display: block;
-
-      img {
-        width: 130px;
-        height: 147px;
-      }
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      margin-top: 0;
-    }
-
-    .footer-nav-list {
-      gap: 2px clamp(32px, calc(40 var(--vw-pc)), 40px);
-    }
-
-    .footer-nav-item {
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(3),
-      &:nth-child(5),
-      &:nth-child(6) {
-        margin-right: 0;
-
-        &::after {
-          display: none;
-        }
-      }
-
-      &:nth-child(2),
-      &:nth-child(3),
-      &:nth-child(4),
-      &:nth-child(6),
-      &:nth-child(7) {
-        margin-left: 0;
-      }
-
-      &:not(:last-child)::after {
-        display: block;
-        content: "";
-        width: 1px;
-        height: clamp(12px, calc(14 var(--vw-pc)), 14px);
-        margin: auto;
-        background-color: var(--color-base);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: -20px;
-      }
-
-      a {
-        padding: 6px 0;
-        font-size: clamp(12px, calc(14 var(--vw-pc)), 14px);
-      }
-    }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
-      height: auto;
-      padding-top: 0;
-    }
-
-    .footer-links {
-      flex-direction: row-reverse;
-      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
-    }
-
-    .footer-links-list {
-      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
-      margin-top: 0;
-    }
-
-    .footer-links-item {
-      position: relative;
-
-      &:first-child::after,
-      &:last-child::after {
-        content: "";
-        width: 1px;
-        height: 14px;
-        margin: auto;
-        background-color: var(--color-base);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: -20px;
-      }
-      a {
-        font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
-      }
-    }
-
-    .footer-sns {
-      gap: 30px;
-      gap: clamp(20px, calc(30 var(--vw-pc)), 30px);
-    }
-
-    .footer-copyright {
-      margin-top: 0;
-      font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
-      letter-spacing: .025em;
-    }
-  }
-
-  @media (any-hover: hover) {
-    .footer-nav-item a,
-    .footer-links-item a,
-    .footer-sns-item a {
-      transition: opacity .3s ease;
-
-      &:hover {
-        opacity: .6;
-      }
     }
   }
 </style>
