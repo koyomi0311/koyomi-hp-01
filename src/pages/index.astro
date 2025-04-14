@@ -51,7 +51,7 @@ const {
   subTitle = "トップページ",
   ogType = "website",
   ogTitle = subTitle,
-  description = "埼玉県羽生市のプライベートサロン「mahana」では、薬剤師オーナーが腸律セラピー・アロマトリートメント・よもぎ蒸し・フェイシャルエステをご提供。腸から美しく整え、心と身体のバランスを整える癒しの時間をお届けします。",
+  description = "所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」。マタニティ・産後ケアからボディメイクまで多彩なプログラム。少人数制の空間で心と体を整えます。",
   ogDescription = description,
   // noContact = false,
   noIndex = false,
@@ -64,7 +64,7 @@ const {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana｜{subTitle}</title>
+    <title>koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ｜{subTitle}</title>
     <meta name="description" content={description}>
 
     <!-- noindex -->
@@ -77,16 +77,16 @@ const {
     <link rel="icon" type="image/png" href="/android-chrome-256x256.png">
 
     <!-- ogp -->
-    <meta property="og:site_name" content="埼玉県羽生市の腸律セラピー・アロマ・よもぎ蒸し｜mahana">
-    <meta property="og:url" content={`https://mahana-organic.com${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="koyomi yoga pilates｜所沢のヨガ&ピラティススタジオ">
+    <meta property="og:url" content={`https://koyomi-yoga.com${Astro.url.pathname}`} />
     <meta property="og:type" content={ogType}>
     <meta property="og:title" content={ogTitle}>
     <meta property="og:description" content={ogDescription}>
-    <meta property="og:image" content="https://mahana-organic.com/ogp.webp">
+    <meta property="og:image" content="https://koyomi-yoga.com/ogp.webp">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:description" content={ogDescription}>
-    <meta name="twitter:image:src" content="https://mahana-organic.com/ogp.webp">
+    <meta name="twitter:image:src" content="https://koyomi-yoga.com/ogp.webp">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -648,7 +648,7 @@ const {
                   <a href="/law">特定商取引法に基づく表記</a>
                 </li>
                 <li class="footer-links-item">
-                  <a href="/privacy">個人情報保護方針</a>
+                  <a href="/privacy-policy">プライバシーポリシー</a>
                 </li>
               </ul>
               <ul class="footer-sns">
@@ -673,6 +673,7 @@ const {
 </html>
 
 <script>
+  // hamburger menu
   document.addEventListener("DOMContentLoaded", function () {
     const hamburger = document.querySelector(".header-hamburger");
     const headerLinks = document.querySelector(".header-link");
@@ -691,6 +692,7 @@ const {
     });
   });
 
+  // slider (splide)
   import Splide from '@splidejs/splide';
   document.addEventListener( 'DOMContentLoaded', function() {
     new Splide("#image-slider", {
@@ -2199,9 +2201,6 @@ const {
   }
 
   .top-access-map {
-    // width: 100%;
-    // height: auto;
-    // aspect-ratio: 2 / 1;
     background-color: #eee;
 
     iframe {
@@ -2254,9 +2253,6 @@ const {
 
     .top-access-map {
       flex: 1 1 auto;
-      // width: 100%;
-      // height: auto;
-      // aspect-ratio: 2 / 1;
       background-color: #eee;
 
       iframe {
