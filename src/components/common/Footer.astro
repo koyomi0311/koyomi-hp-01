@@ -1,0 +1,380 @@
+---
+const { logoWide, logoTall, navList, snsList } = Astro.props;
+---
+
+<!-- footer -->
+<footer class="footer">
+  <div class="footer-container l-container">
+    <div class="footer-logo footer-logo--sp">
+      <img src={logoWide} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="142" height="45">
+    </div><!-- /.footer-logo -->
+    <div class="footer-logo footer-logo--pc">
+      <img src={logoTall} alt="コヨミ ヨガ ピラティス" loading="lazy" decoding="async" width="292" height="330">
+    </div><!-- /.footer-logo -->
+    <div class="footer-content">
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <a href="/">トップ</a>
+          </li>
+          {navList.map((item) =>
+            <li class="footer-nav-item">
+              <a href={item.href}>{item.label}</a>
+            </li>
+          )}
+          <li class="footer-nav-item">
+            <a href="https://coubic.com/yogapilates-koyomi" target="_blank">ご予約サイト</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <ul class="footer-links-list">
+            <li class="footer-links-item">
+              <a href="/law">特定商取引法に基づく表記</a>
+            </li>
+            <li class="footer-links-item">
+              <a href="/privacy-policy">プライバシーポリシー</a>
+            </li>
+          </ul>
+          <ul class="footer-sns">
+            <li class="footer-sns-item">
+              <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
+                <img src="/assets/images/global/icon-line.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+            <li class="footer-sns-item">
+              <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インタグラムを見る">
+                <img src="/assets/images/global/icon-instagram.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
+              </a>
+            </li>
+          </ul>
+        </div><!-- /.footer-links -->
+        <small class="footer-copyright" aria-label="著作権 2025 コヨミ ヨガ ピラティス">&copy; 2025 koyomi yoga pilates</small>
+      </div><!-- /.footer-bottom -->
+    </div><!-- /.footer-content -->
+  </div><!-- /.footer-container.l-container -->
+</footer><!-- /.footer -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+
+    // footer
+    .footer {
+    padding-top: 42px;
+    margin: auto;
+    color: var(--color-base);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+    }
+
+    &::before {
+      width: 800px;
+      height: 160px;
+      background-image: url(/assets/images/global/bg-footer-sp.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      top: 0;
+      left: 50%;
+      translate: -50%;
+    }
+
+    &::after {
+      display: block;
+      width: 100%;
+      height: 86px;
+      background-color: var(--color-main);
+      top: 158px;
+      left: 0;
+    }
+  }
+
+  .footer-container {
+    max-width: 370px;
+  }
+
+  .footer-logo--sp {
+    img {
+      width: 170px;
+      height: 54px;
+      filter: invert(100%) sepia(12%) saturate(2000%) hue-rotate(303deg) brightness(104%) contrast(94%);
+    }
+  }
+
+  .footer-logo--pc {
+    display: none;
+  }
+
+  .footer-content {
+    margin-top: 16px;
+  }
+
+  .footer-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
+
+  .footer-nav-item {
+    position: relative;
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(5),
+    &:nth-child(6) {
+      margin-right: min(25px, calc(18 var(--vw-sp)));
+
+      &::after {
+        content: "";
+        width: 1px;
+        height: 12px;
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: max(-25px, calc(-18 var(--vw-sp)));
+      }
+    }
+
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(6),
+    &:nth-child(7) {
+      margin-left: min(25px, calc(18 var(--vw-sp)));
+    }
+
+    a {
+      display: block;
+      padding: 4px 0;
+      font-size: 12px;
+      letter-spacing: .1em;
+    }
+  }
+
+  .footer-bottom {
+    height: 79px;
+    padding-top: 11px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-links-list {
+    display: flex;
+    gap: 21px;
+    margin-top: 7px;
+  }
+
+  .footer-links-item {
+    position: relative;
+
+    &:first-child::after {
+      content: "";
+      width: 1px;
+      height: 10px;
+      margin: auto;
+      background-color: var(--color-base);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -11px;
+
+    }
+    a {
+      display: block;
+      padding: 4px 0;
+      font-size: 10px;
+    }
+  }
+
+  .footer-sns {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-sns-item {
+    img {
+      width: 20px;
+      height: 20px;
+      filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
+    }
+  }
+
+  .footer-copyright {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: .02em;
+  }
+
+  @include mq() {
+    .footer {
+      padding-top: 62px;
+      margin: auto;
+      // 最終的にheightはautoに（削除）
+      height: 240px;
+
+      &::before {
+        width: 2000px;
+        height: 240px;
+        background-image: url(/assets/images/global/bg-footer-pc.svg);
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      max-width: calc(var(--width-content) + 40px * 2);
+    }
+
+    .footer-logo--sp {
+      display: none;
+    }
+
+    .footer-logo--pc {
+      display: block;
+
+      img {
+        width: 130px;
+        height: 147px;
+      }
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .footer-nav-list {
+      gap: 2px clamp(32px, calc(40 var(--vw-pc)), 40px);
+    }
+
+    .footer-nav-item {
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(5),
+      &:nth-child(6) {
+        margin-right: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(6),
+      &:nth-child(7) {
+        margin-left: 0;
+      }
+
+      &:not(:last-child)::after {
+        display: block;
+        content: "";
+        width: 1px;
+        height: clamp(12px, calc(14 var(--vw-pc)), 14px);
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -20px;
+      }
+
+      a {
+        padding: 6px 0;
+        font-size: clamp(12px, calc(14 var(--vw-pc)), 14px);
+      }
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      height: auto;
+      padding-top: 0;
+    }
+
+    .footer-links {
+      flex-direction: row-reverse;
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+    }
+
+    .footer-links-list {
+      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      margin-top: 0;
+    }
+
+    .footer-links-item {
+      position: relative;
+
+      &:first-child::after,
+      &:last-child::after {
+        content: "";
+        width: 1px;
+        height: 14px;
+        margin: auto;
+        background-color: var(--color-base);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -20px;
+      }
+      a {
+        font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
+      }
+    }
+
+    .footer-sns {
+      gap: 30px;
+      gap: clamp(20px, calc(30 var(--vw-pc)), 30px);
+    }
+
+    .footer-copyright {
+      margin-top: 0;
+      font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);
+      letter-spacing: .025em;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .footer-nav-item a,
+    .footer-links-item a,
+    .footer-sns-item a {
+      transition: opacity .3s ease;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+</style>
