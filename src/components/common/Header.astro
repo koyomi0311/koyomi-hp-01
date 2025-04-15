@@ -1,6 +1,5 @@
 ---
 const { logoWide, navList, snsList } = Astro.props;
-
 ---
 
 <!-- header -->
@@ -255,19 +254,11 @@ const { logoWide, navList, snsList } = Astro.props;
     }
   }
 
-  @media screen and (max-width: 767px) {
-    .header {
-      height: 48px;
-    }
-
+  @media screen and (max-width: 1023px) {
     .header-container {
       width: 100%;
       padding: 0 calc(20 var(--vw-sp));
       position: relative;
-    }
-
-    .header-logo {
-      max-width: 78px;
     }
 
     // header-sp-reservation
@@ -394,7 +385,7 @@ const { logoWide, navList, snsList } = Astro.props;
       gap: 16px;
       width: 69.3%;
       height: 100vh;
-      padding: 84px 24px 60px 24px;
+      padding: 84px 40px 60px;
       background-color: var(--color-main);
       color: var(--color-base);
       position: fixed;
@@ -467,6 +458,21 @@ const { logoWide, navList, snsList } = Astro.props;
       img {
         filter: invert(100%) sepia(50%) saturate(834%) hue-rotate(312deg) brightness(112%) contrast(92%);
       }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .header {
+      height: 48px;
+    }
+
+    .header-logo {
+      max-width: 78px;
+    }
+
+    // hamburger menu
+    .header-link {
+      padding: 84px 24px 60px;
     }
   }
 </style>

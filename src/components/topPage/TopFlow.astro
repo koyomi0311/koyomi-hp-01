@@ -1,0 +1,249 @@
+---
+import LessonTitle from "../LessonTitle.astro";
+import ButtonCta from "../ButtonCta.astro";
+---
+
+<section class="top-flow">
+  <div class="l-container-s">
+    <h2 class="top-flow-title">おすすめの流れ</h2>
+    <div class="top-flow-section-body l-section-body">
+      <ol class="top-flow-list">
+        <li class="top-flow-item">
+          <div class="top-flow-description">
+            <div class="top-flow-heading">
+              <div class="top-flow-heading-num">
+                <img src="/assets/images/flow/text-flow-01.svg" alt="01" loading="lazy" decoding="async" width="105" height="119">
+              </div>
+              <LessonTitle
+              titleText="プライベートレッスン"
+              titleTextClass="c-lesson-title-text c-lesson-title-text--private"
+              imgSrc="/assets/images/global/text-private-lesson.svg"
+              imgWidth="299"
+              imgHeight="100"
+              imgClass="c-lesson-title-image c-lesson-title-image--02"
+              />
+            </div><!-- /.top-flow-heading -->
+            <p class="top-flow-text">まずはプライベートレッスンで<br>ご自身の体の癖や心の癒し方を知り、<br>その後、 グループレッスンで<br>体と心が整っていく感覚を<br class="u-no-pc">深めるのがおすすめ。</p>
+          </div><!-- /.top-flow-description -->
+          <div class="top-flow-image">
+            <img src="/assets/images/flow/pic-flow-private@2x.png" alt="" loading="lazy" decoding="async" width="493" height="356">
+          </div><!-- /.top-flow-image -->
+        </li>
+        <li class="top-flow-item top-flow-item--02">
+          <div class="top-flow-description top-flow-description--02">
+            <div class="top-flow-heading top-flow-heading--02">
+              <div class="top-flow-heading-num top-flow-heading-num--02">
+                <img src="/assets/images/flow/text-flow-02.svg" alt="02" loading="lazy" decoding="async" width="113" height="119">
+              </div>
+              <LessonTitle
+              titleText="グループレッスン"
+              titleTextClass="c-lesson-title-text c-lesson-title-text--group"
+              imgSrc="/assets/images/global/text-group-lesson.svg"
+              imgWidth="277"
+              imgHeight="100"
+              imgClass="c-lesson-title-image c-lesson-title-image--01"
+              />
+            </div><!-- /.top-flow-heading -->
+            <p class="top-flow-text">段階的に進めることで、<br>自分自身の状態を<br class="u-no-pc">コントロールする力が身につき、<br>忙しい毎日の中でも、<br>心と体に向き合うゆとりが生まれます。</p>
+          </div><!-- /.top-flow-description -->
+          <div class="top-flow-image top-flow-image--02">
+            <img src="/assets/images/flow/pic-flow-group@2x.png" alt="" loading="lazy" decoding="async" width="454" height="368">
+          </div><!-- /.top-flow-image -->
+        </li>
+      </ol>
+      <div class="top-flow-cta">
+        <ButtonCta />
+      </div><!-- /.top-flow-cta -->
+    </div><!-- /.top-flow-section-body.l-section-body -->
+  </div><!-- /.l-container-s -->
+</section><!-- /.top-flow -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-flow {
+    margin-top: 60px;
+  }
+
+  .top-flow-title {
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 123px;
+      height: 15px;
+      margin: auto;
+      background-image: url(/assets/images/flow/image-flow-dec@2x.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      position: absolute;
+      bottom: -25px;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  .top-flow-section-body {
+    margin-top: 45px;
+  }
+
+  .top-flow-list {
+    display: grid;
+    gap: 25px;
+  }
+
+  .top-flow-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+  }
+
+  .top-flow-heading {
+    display: flex;
+    gap: 10px;
+  }
+
+  .top-flow-heading-num {
+    margin-left: 3px;
+
+    img {
+      width: 50.5px;
+      height: 59px;
+    }
+
+    &--02 {
+      img {
+        width: 53.5px;
+      }
+    }
+  }
+
+  .top-flow-text {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .top-flow-cta {
+    width: fit-content;
+    margin: 40px auto 0;
+  }
+
+  @include mq() {
+    .top-flow {
+      margin-top: 80px;
+    }
+
+    .top-flow-title {
+      font-size: 20px;
+
+      &::after {
+        width: 174px;
+        height: 22px;
+        bottom: -32px;
+      }
+    }
+
+    .top-flow-section-body {
+      margin-top: 92px;
+    }
+
+    .top-flow-list {
+      gap: 60px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .top-flow-item {
+      max-width: 500px;
+      margin: 0 auto 0 0;
+
+      &--02 {
+        margin: 0 0 0 auto;
+      }
+    }
+
+    .top-flow-heading {
+      gap: 30px;
+      margin-bottom: 22px;
+
+      &--02 {
+        margin-bottom: 10px;
+      }
+    }
+
+    .top-flow-heading-num {
+      margin-left: 0;
+      transform: translateY(11px);
+
+      img {
+        width: 100px;
+        height: 118px;
+      }
+
+      &--02 {
+        transform: translateY(-3px);
+
+        img {
+          width: 107px;
+        }
+      }
+    }
+
+    .top-flow-text {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .top-flow-cta {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 1080px) {
+    .top-flow-list {
+      max-width: initial;
+    }
+
+    .top-flow-item {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+      max-width: initial;
+      margin: 0;
+
+      &--02 {
+        flex-direction: row-reverse;
+        margin: 0;
+      }
+    }
+
+    .top-flow-description {
+      width: 450px;
+      margin-bottom: 12px;
+
+      &--02 {
+        width: 460px;
+        margin-bottom: 0;
+      }
+    }
+
+    .top-flow-image {
+      img {
+        width: 493px;
+      }
+
+      &--02 {
+        img {
+          width: 454px;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+import SectionTitle from "../SectionTitle.astro";
+---
+
+<section class="top-faq">
+  <div class="l-container-s">
+    <div class="top-faq-title">
+      <SectionTitle
+        titleText="よくある質問"
+        textClass="c-section-title-text c-section-title-text--white"
+        decClass="c-section-title-dec c-section-title-dec--white"
+        decClassRight="c-section-title-dec c-section-title-dec--white c-section-title-dec--right"
+      />
+    </div><!-- /.top-faq-title -->
+    <div class="top-faq-section-body l-section-body">
+      <ul class="top-faq-list">
+        <li class="top-faq-item">
+          <dl class="top-faq-def-list">
+            <dt>
+              <span class="top-faq-q" aria-label="質問">Q</span>
+              <span class="top-faq-q-text">服装について</span>
+            </dt>
+            <dd>動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調整が可能です。</dd>
+          </dl>
+        </li>
+        <li class="top-faq-item">
+          <dl class="top-faq-def-list">
+            <dt>
+              <span class="top-faq-q" aria-label="質問">Q</span>
+              <span class="top-faq-q-text">駐車場・駐輪場について</span>
+            </dt>
+            <dd>提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。</dd>
+          </dl>
+        </li>
+        <li class="top-faq-item">
+          <dl class="top-faq-def-list">
+            <dt>
+              <span class="top-faq-q" aria-label="質問">Q</span>
+              <span class="top-faq-q-text">持ちものについて</span>
+            </dt>
+            <dd>ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。<br>※マットやレッスンで使用するアイテムは、こちらでご用意しております。</dd>
+          </dl>
+        </li>
+        <li class="top-faq-item">
+          <dl class="top-faq-def-list">
+            <dt>
+              <span class="top-faq-q" aria-label="質問">Q</span>
+              <span class="top-faq-q-text">男性の入店について</span>
+            </dt>
+            <dd>施設は女性専用のため、男性のご入店はお断りしております。</dd>
+          </dl>
+        </li>
+        <li class="top-faq-item">
+          <dl class="top-faq-def-list">
+            <dt>
+              <span class="top-faq-q" aria-label="質問">Q</span>
+              <span class="top-faq-q-text">年齢制限について</span>
+            </dt>
+            <dd>中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。</dd>
+          </dl>
+        </li>
+      </ul>
+    </div><!-- /.top-faq-section-body.l-section-body -->
+  </div><!-- /.l-container-s -->
+</section><!-- /.top-faq -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-faq {
+    padding: 60px 0;
+    margin-top: 60px;
+    background-color: var(--color-main);
+    color: var(--color-base);
+  }
+
+  .top-faq-list {
+    display: grid;
+    gap: 20px;
+  }
+
+  .top-faq-def-list {
+    display: grid;
+    gap: 3px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+
+    dt {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    dd {
+      margin-left: 50px;
+    }
+  }
+
+  .top-faq-q {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 38px;
+    background-image: url(/assets/images/faq/bg-faq-q@2x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    color: var(--color-main);
+  }
+
+  @include mq() {
+    .top-faq {
+      padding: 100px 0;
+      margin-top: 100px;
+    }
+
+    .top-faq-section-body {
+      margin-top: 62px;
+    }
+
+    .top-faq-list {
+      gap: 40px;
+    }
+
+    .top-faq-def-list {
+      gap: 10px;
+      padding-bottom: 40px;
+
+      dt {
+        gap: 20px;
+        font-size: 20px;
+      }
+
+      dd {
+        margin-left: 74px;
+      }
+    }
+
+    .top-faq-q {
+      width: 54px;
+      height: 50px;
+    }
+  }
+</style>

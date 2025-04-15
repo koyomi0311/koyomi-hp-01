@@ -1,0 +1,69 @@
+<div class="top-catchphrase">
+  <div class="top-catchphrase-container l-container-s">
+    <p class="top-catchphrase-text"><span class="top-catchphrase-text-lg">心地</span>よい<span class="top-catchphrase-text-lg">毎日</span>をここから。<br>忙しい日常に、<span class="top-catchphrase-text-lg">心</span>と<span class="top-catchphrase-text-lg">体</span>を<span class="top-catchphrase-text-lg">解く時間</span>を。</p>
+    <div class="top-catchphrase-image">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg">
+        <source media="(min-width: 768px)" srcset="/assets/images/catchphrase/pic-catchphrase-flower-pc@2x.jpg">
+        <img src="/assets/images/catchphrase/pic-catchphrase-flower-sp@2x.jpg" alt="" loading="lazy" decoding="async" width="240" height="160">
+      </picture>
+    </div><!-- /.top-catchphrase-image -->
+  </div><!-- /.top-catchphrase-container.l-container-s -->
+</div><!-- /.top-catchphrase -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-catchphrase {
+    margin-top: 60px;
+  }
+
+  .top-catchphrase-container {
+    max-width: 500px;
+  }
+
+  .top-catchphrase-text {
+    letter-spacing: .2em;
+    line-height: 2;
+  }
+
+  .top-catchphrase-text-lg {
+    font-size: 18px;
+  }
+
+  .top-catchphrase-image {
+    margin-top: 20px;
+    text-align: right;
+
+    img {
+      width: 100%;
+      max-width: 240px;
+    }
+  }
+
+  @include mq() {
+    .top-catchphrase {
+      margin-top: 100px;
+    }
+
+    .top-catchphrase-container {
+      max-width: calc(var(--width-content-s) + 40px * 2);
+    }
+
+    .top-catchphrase-text {
+      font-size: 26px;
+      letter-spacing: .3em;
+    }
+
+    .top-catchphrase-text-lg {
+      font-size: 30px;
+    }
+
+    .top-catchphrase-image {
+
+      img {
+        max-width: 650px;
+      }
+    }
+  }
+</style>

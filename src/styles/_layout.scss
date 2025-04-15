@@ -7,7 +7,7 @@
 ----------------------------------- */
 .l-container,
 .l-container-s {
-  width: calc(320 var(--vw-sp));
+  width: max(290px, calc(320 var(--vw-sp)));
   margin: auto;
 }
 

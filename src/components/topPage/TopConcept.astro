@@ -1,0 +1,64 @@
+---
+import SectionTitle from "../SectionTitle.astro";
+---
+
+<section class="top-concept">
+  <div class="l-container-s">
+    <div class="top-concept-title">
+      <SectionTitle titleText="コンセプト" />
+    </div><!-- /.top-concept-title -->
+    <div class="top-concept-section-body">
+      <div class="top-concept-description">
+        <p class="top-concept-text">月日と共に変わる心と身体。<br>歳を重ねることは日々の中で<br class="u-no-pc">自分を見つめ直す旅です。</p>
+        <p class="top-concept-text">ここは、がんばる女性たちが<br class="u-no-pc">ほっと一息つける場所。</p>
+        <p class="top-concept-text">忙しさに埋もれた心をそっとほどき、<br>あなた自身を大切にする時間を<br class="u-no-pc">お届けします。</p>
+        <p class="top-concept-text">ヨガで心を整え、<br class="u-no-pc">内側から軽くなる感覚を。<br>ピラティスで体を支え、<br class="u-no-pc">日々にゆとりをつくる。</p>
+        <p class="top-concept-text">季節の移ろいや、<br class="u-no-pc">月のリズムとともに、<br>誰もが安心して自分を取り戻せる、<br class="u-no-pc">そんな居場所を目指しています。</p>
+      </div><!-- /.top-concept-description -->
+    </div><!-- /.top-concept-section-body -->
+  </div><!-- /.l-container-s -->
+</section><!-- /.top-concept -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-concept {
+    padding-bottom: 80px;
+    margin-top: 125px;
+  }
+
+  .top-concept-section-body {
+    margin-top: 40px;
+  }
+
+  .top-concept-description {
+    display: grid;
+    gap: 1.87em;
+  }
+
+  .top-concept-text {
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  @include mq() {
+    .top-concept {
+      padding-bottom: 166px;
+      margin-top: 180px;
+    }
+
+    .top-concept-section-body {
+      margin-top: 67px;
+    }
+
+    .top-concept-description {
+      gap: 2.5em;
+    }
+
+    .top-concept-text {
+      font-size: 20px;
+      line-height: 2;
+    }
+  }
+</style>
