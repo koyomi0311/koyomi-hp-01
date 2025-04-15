@@ -38,16 +38,20 @@ const { logoWide, logoTall, navList, snsList } = Astro.props;
             </li>
           </ul>
           <ul class="footer-sns">
-            <li class="footer-sns-item">
-              <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
-                <img src="/assets/images/global/icon-line.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
-              </a>
-            </li>
-            <li class="footer-sns-item">
-              <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インタグラムを見る">
-                <img src="/assets/images/global/icon-instagram.svg" alt="" loading="lazy" decoding="async" width="20" height="20">
-              </a>
-            </li>
+            {snsList.map((item) =>
+              <li class="footer-sns-item">
+                <a href={item.href} target="_blank" aria-label={item.ariaLabel}>
+                  <img
+                    src={item.src}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                    width="20"
+                    height="20"
+                  >
+                </a>
+              </li>
+            )}
           </ul>
         </div><!-- /.footer-links -->
         <small class="footer-copyright" aria-label="著作権 2025 コヨミ ヨガ ピラティス">&copy; 2025 koyomi yoga pilates</small>
@@ -58,7 +62,6 @@ const { logoWide, logoTall, navList, snsList } = Astro.props;
 
 <style lang="scss">
   @use '../../styles/breakpoints' as *;
-
 
     // footer
     .footer {

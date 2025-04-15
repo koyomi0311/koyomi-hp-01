@@ -35,7 +35,7 @@ const { logoWide, navList, snsList } = Astro.props;
         <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--pc">ご予約</a>
         <a href="https://coubic.com/yogapilates-koyomi" target="_blank" class="header-reservation header-reservation--sp">今すぐ予約する</a>
         <ul class="header-sns">
-          <!-- {snsList.map((item) =>
+          {snsList.map((item) =>
             <li class="header-sns-item">
               <a href={item.href} target="_blank" aria-label={item.ariaLabel}>
                 <img
@@ -48,17 +48,7 @@ const { logoWide, navList, snsList } = Astro.props;
                 >
               </a>
             </li>
-          )} -->
-          <li class="header-sns-item">
-            <a href="https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url" target="_blank" aria-label="ラインで友だち追加">
-              <img src="/assets/images/global/icon-line.svg" alt="" loading="eager" decoding="async" width="20" height="20">
-            </a>
-          </li>
-          <li class="header-sns-item">
-            <a href="https://www.instagram.com/kotono_yoga" target="_blank" aria-label="インスタグラムを見る">
-              <img src="/assets/images/global/icon-instagram.svg" alt="" loading="eager" decoding="async" width="20" height="20">
-            </a>
-          </li>
+          )}
         </ul>
       </div><!-- /.header-external-link -->
     </div><!-- /.header-link -->
