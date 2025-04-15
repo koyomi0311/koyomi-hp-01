@@ -1,0 +1,224 @@
+---
+const { logoTall } = Astro.props;
+---
+
+<!-- top-kv -->
+<div class="top-kv">
+  <div class="splide top-kv-bg"  id="image-slider" aria-label="メインビジュアルの画像スライダー">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <picture>
+            <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png">
+            <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-01-pc@2x.png">
+            <img src="/assets/images/kv/pic-top-kv-bg-01-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+          </picture>
+        </li>
+        <li class="splide__slide">
+          <picture>
+            <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png">
+            <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-02-pc@2x.png">
+            <img src="/assets/images/kv/pic-top-kv-bg-02-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+          </picture>
+        </li>
+        <li class="splide__slide">
+          <picture>
+            <source media="(max-width: 767px)" srcset="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png">
+            <source media="(min-width: 768px)" srcset="/assets/images/kv/pic-top-kv-bg-03-pc@2x.png">
+            <img src="/assets/images/kv/pic-top-kv-bg-03-sp@2x.png" alt="" loading="eager" decoding="async" width="375" height="619">
+          </picture>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="top-kv-container l-container">
+    <div class="top-kv-logo">
+      <img src={logoTall} alt="コヨミ ヨガ ピラティスのロゴ" loading="eager" decoding="async" width="292" height="330">
+    </div><!-- /.top-kv-logo -->
+    <div class="top-kv-cta">
+      <a href="https://coubic.com/yogapilates-koyomi" target="_blank">予約は<br>こちらから<span class="top-kv-cta-arrow"></span></a>
+    </div><!-- /.top-kv-cta -->
+  </div><!-- /.top-kv-container.l-container -->
+</div><!-- /.top-kv -->
+
+<script>
+  // slider (splide)
+  import Splide from '@splidejs/splide';
+  document.addEventListener( 'DOMContentLoaded', function() {
+    new Splide("#image-slider", {
+      autoplay: true,
+      type: "fade",
+      interval: 4500,
+      speed: 2000,
+      rewind: true,
+      arrows: false,
+      pagination: "splide__pagination top-kv-bg-pagination",
+      page: "splide__pagination__page top-kv-bg-page",
+    }).mount();
+  });
+</script>
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+    .top-kv {
+    width: 100%;
+    height: calc(100vh - 48px);
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .top-kv-bg {
+    height: inherit;
+
+    img {
+      width: 100%;
+      height: calc(100vh - 48px);
+      object-fit: cover;
+    }
+  }
+
+  // pagination
+  .top-kv-bg-pagination {
+
+  }
+
+  .top-kv-bg-page {
+
+  }
+
+  .top-kv-container {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .top-kv-logo {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    img {
+      width: 100%;
+      max-width: 184px;
+    }
+  }
+
+  .top-kv-cta {
+    display: none;
+  }
+
+  @include mq() {
+    .top-kv {
+      height: 800px;
+      margin-top: 70px;
+    }
+
+    .top-kv-bg {
+      img {
+        height: 800px;
+      }
+    }
+
+    .top-kv-logo {
+      img {
+        max-width: 292px;
+        width: clamp(240px, calc(292 var(--vw-pc)), 292px);
+      }
+    }
+
+    .top-kv-cta {
+      text-align: center;
+      position: absolute;
+      right: 37px;
+      bottom: min(116px, calc(116 var(--vw-pc)));
+
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        width: 180px;
+        height: 180px;
+        padding-top: 66px;
+        color: #fff;
+        font-size: 14px;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        position: relative;
+        z-index: 1;
+
+        &::before,
+        &::after {
+          content: "";
+          width: 120px;
+          height: 120px;
+          border: 1px solid;
+          rotate: 45deg;
+          position: absolute;
+          top: 30px;
+          z-index: -1;
+          transition: left .3s ease;
+        }
+
+        &::before {
+          left: 25px;
+        }
+
+        &::after {
+          left: 35px;
+        }
+      }
+    }
+
+    .top-kv-cta-arrow {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background-color: #fff;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 10px;
+        height: 1px;
+        background-color: #fff;
+        rotate: 30deg;
+        position: absolute;
+        top: -3px;
+        right: 1px;
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .top-kv-cta {
+      display: block;
+      text-align: center;
+      position: absolute;
+      right: 37px;
+      bottom: 116px;
+
+      a {
+        &:hover {
+          &::before {
+          left: 30px;
+        }
+
+        &::after {
+          left: 30px;
+        }
+
+        }
+      }
+    }
+  }
+</style>

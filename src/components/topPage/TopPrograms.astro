@@ -1,0 +1,317 @@
+<!-- top-programs -->
+<section class="top-programs">
+  <div class="top-programs-title">
+    <h2 class="top-programs-title-text">女性の体のサイクルにあわせた<br class="u-no-pc">多彩なプログラム</h2>
+    <div class="top-programs-title-dec">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/assets/images/programs/image-programs-title-dec-sp@2x.png">
+        <source media="(min-width: 768px)" srcset="/assets/images/programs/image-programs-title-dec-pc@2x.png">
+        <img src="/assets/images/programs/image-programs-title-dec-sp@2x.png" alt="" loading="lazy" decoding="async" width="250" height="11">
+      </picture>
+    </div><!-- /.top-programs-title-dec -->
+  </div><!-- /.top-programs-title -->
+  <div class="top-programs-section-body l-section-body">
+    <ul class="top-programs-list">
+      <li class="top-programs-item top-programs-item--01">
+        <dl class="top-programs-def-list">
+          <dt id="label-ninshin">妊娠期</dt>
+          <dd aria-labelledby="label-ninshin">
+            マタニティヨガ
+            <small class="top-programs-note">※妊娠16週目以降</small>
+            <small class="top-programs-note">※医師の許可が必要</small>
+          </dd>
+        </dl>
+      </li>
+      <li class="top-programs-item top-programs-item--02">
+        <dl class="top-programs-def-list">
+          <dt id="label-sango">産後ケア</dt>
+          <dd aria-labelledby="label-sango">プライベート<br>マシンピラティス</dd>
+        </dl>
+      </li>
+      <li class="top-programs-item top-programs-item--03">
+        <dl class="top-programs-def-list">
+          <dt id="label-fullmoon-newmoon">満月〜新月</dt>
+          <dd aria-labelledby="label-fullmoon-newmoon">デトックスヨガ</dd>
+        </dl>
+      </li>
+      <li class="top-programs-item top-programs-item--04">
+        <dl class="top-programs-def-list">
+          <dt id="label-stresscare">ストレスケア</dt>
+          <dd aria-labelledby="label-stresscare">モーニングヨガ</dd>
+          <dd aria-labelledby="label-stresscare">ストレス改善ヨガ</dd>
+          <dd aria-labelledby="label-stresscare">心を満たすヨガ</dd>
+        </dl>
+      </li>
+      <li class="top-programs-item top-programs-item--05">
+        <dl class="top-programs-def-list">
+          <dt id="label-bodymake">ボディメイク</dt>
+          <dd aria-labelledby="label-bodymake">姿勢改善ピラティス</dd>
+          <dd aria-labelledby="label-bodymake">くびれフローヨガ</dd>
+          <dd aria-labelledby="label-bodymake">季節の太陽礼拝</dd>
+        </dl>
+      </li>
+    </ul>
+    <div class="top-programs-images-sp l-container">
+      <div class="top-programs-images-sp-upper">
+        <img src="/assets/images/programs/pic-programs-sp-01@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+        <img src="/assets/images/programs/pic-programs-sp-02@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+        <img src="/assets/images/programs/pic-programs-sp-03@2x.jpg" alt="" loading="lazy" decoding="async" width="100" height="100">
+      </div><!-- /.top-programs-images-sp-upper -->
+      <div class="top-programs-images-sp-lower">
+        <img src="/assets/images/programs/pic-programs-sp-04@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+        <img src="/assets/images/programs/pic-programs-sp-05@2x.jpg" alt="" loading="lazy" decoding="async" width="155" height="155">
+      </div><!-- /.top-programs-images-sp-lower -->
+    </div><!-- /.top-programs-images-sp -->
+    <div class="top-programs-images-pc l-container">
+      <img src="/assets/images/programs/pic-programs-pc-01@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+      <img src="/assets/images/programs/pic-programs-pc-02@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+      <img src="/assets/images/programs/pic-programs-pc-03@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+      <img src="/assets/images/programs/pic-programs-pc-04@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+      <img src="/assets/images/programs/pic-programs-pc-05@2x.jpg" alt="" loading="lazy" decoding="async" width="226" height="226">
+    </div><!-- /.top-programs-images-pc -->
+  </div><!-- /.top-programs-section-body.l-section-body -->
+</section><!-- /.top-programs -->
+
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+    // top-programs
+    .top-programs {
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .top-programs-title-text {
+    font-size: 16px;
+  }
+
+  .top-programs-title-dec {
+    margin-top: 10px;
+    line-height: 0;
+
+    img {
+      display: inline-block;
+      max-width: 250px;
+    }
+  }
+
+  .top-programs-list {
+    width: clamp(314px, calc(328 var(--vw-sp)), 375px);
+    height: calc(344px + 156px);
+    margin: auto;
+    position: relative;
+  }
+
+  .top-programs-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 168px;
+    height: 156px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+
+    &--01 {
+      background-image: url(/assets/images/programs/bg-programs-01@2x.png);
+      top: 0;
+      left: 0;
+    }
+
+    &--02 {
+      background-image: url(/assets/images/programs/bg-programs-02@2x.png);
+      top: 86px;
+      right: 0;
+    }
+
+    &--03 {
+      background-image: url(/assets/images/programs/bg-programs-03@2x.png);
+      top: 172px;
+      left: 0;
+    }
+
+    &--04 {
+      background-image: url(/assets/images/programs/bg-programs-04@2x.png);
+      top: 258px;
+      right: 0;
+    }
+
+    &--05 {
+      background-image: url(/assets/images/programs/bg-programs-05@2x.png);
+      top: 344px;
+      left: 0;
+    }
+  }
+
+  .top-programs-def-list {
+    dt {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    dd {
+      width: fit-content;
+      margin: auto;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .top-programs-note {
+    display: block;
+    font-size: 10px;
+    text-align-last: left;
+
+    &:first-of-type {
+      margin-top: 5px;
+    }
+  }
+
+  .top-programs-images-sp {
+    max-width: 375px;
+    margin-top: 40px;
+  }
+
+  .top-programs-images-sp-upper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: min(10px, calc(10 var(--vw-sp)));
+  }
+
+  .top-programs-images-sp-lower {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: min(10px, calc(10 var(--vw-sp)));
+    margin-top: min(10px, calc(10 var(--vw-sp)));
+  }
+
+  .top-programs-images-pc {
+    display: none;
+  }
+
+  @include mq() {
+    .top-programs {
+      margin-top: 120px;
+    }
+
+    .top-programs-title-text {
+      font-size: 20px;
+    }
+
+    .top-programs-title-dec {
+      img {
+        max-width: 546px;
+      }
+    }
+
+    .top-programs-section-body {
+      margin-top: 60px;
+    }
+
+    .top-programs-list {
+      width: 600px;
+      height: 820px;
+    }
+
+    .top-programs-item {
+      width: 280px;
+      height: 260px;
+
+      &--01 {
+        top: 0;
+      }
+
+      &--02 {
+        top: 86px;
+      }
+
+      &--03 {
+        top: 279px;
+      }
+
+      &--04 {
+        top: 366px;
+      }
+
+      &--05 {
+        top: 559px;
+      }
+    }
+
+    .top-programs-def-list {
+      dt {
+        font-size: 20px;
+      }
+
+      dd {
+        &:first-of-type {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .top-programs-note {
+      font-size: 12px;
+
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+
+    .top-programs-images-sp {
+      display: none;
+    }
+
+    .top-programs-images-pc {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: min(18px, calc(18 var(--vw-pc)));
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1366px) {
+    .top-programs-list {
+      width: 100%;
+      max-width: calc(1168px + 20px * 2);
+      height: calc(165px + 260px);
+      padding: 0 20px;
+    }
+
+    .top-programs-item {
+      &--01 {
+        top: 0;
+        left: 20px;
+      }
+
+      &--02 {
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+
+      &--03 {
+        top: 0;
+        left: auto;
+        right: 20px;
+      }
+
+      &--04 {
+        top: 165px;
+        right: auto;
+        left: 242px;
+      }
+
+      &--05 {
+        top: 165px;
+        left: auto;
+        right: 242px;
+      }
+    }
+  }
+</style>
