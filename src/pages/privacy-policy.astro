@@ -3,11 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import HeadingTitle from "../components/HeadingTitle.astro";
 ---
 
-<!-- top -->
+<!-- page-privacy-policy -->
 <Layout
   subTitle="プライバシーポリシー"
   ogType="website"
-  description="所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」のプライバシーポリシーについてご案内します。個人情報の取り扱いに関する方針をご確認ください。"
+  description="所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」のプライバシーポリシーをご案内します。お客様の大切な個人情報を適切に取り扱うための方針を明記しています。"
 >
   <main class="privacy-main">
     <div class="privacy-heading">
@@ -142,7 +142,7 @@ import HeadingTitle from "../components/HeadingTitle.astro";
           </dl>
           <dl class="privacy-def-list">
             <dt>Eメールアドレス</dt>
-            <dd><a href=mailto:koyomiyogapilates@gmail.com" target="_blank">koyomiyogapilates@gmail.com</a></dd>
+            <dd>koyomiyogapilates@gmail.com</dd>
           </dl>
         </li>
       </ul>
@@ -195,10 +195,30 @@ import HeadingTitle from "../components/HeadingTitle.astro";
 
   .privacy-def-list {
     display: flex;
-    gap: 0.5em;
+    gap: 1em;
 
     dt {
       font-weight: 400;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: var(--color-main);
+        position: absolute;
+        right: -7px;
+      }
+
+      &::before {
+        top: 35%;
+      }
+
+      &::after {
+        top: 60%;
+      }
     }
 
     dd {
@@ -210,13 +230,42 @@ import HeadingTitle from "../components/HeadingTitle.astro";
 
   @include mq() {
     .privacy-main {
-      padding-bottom: 160px;
+      padding-top: 93px;
+      padding-bottom: 362px;
+      margin-top: 70px;
+      font-size: 16px;
+    }
+
+    .privacy-lead {
+      margin-top: 60px;
+    }
+
+    .privacy-major-list {
+      display: grid;
+      gap: 60px;
+      margin-top: 60px;
     }
 
     .privacy-heading-lv2 {
-      padding-bottom: 20px;
       margin-bottom: 20px;
       font-size: 20px;
+    }
+
+    .privacy-def-list {
+      dt {
+        &::before,
+        &::after {
+          right: -9px;
+        }
+
+        &::before {
+          top: 35%;
+        }
+
+        &::after {
+          top: 65%;
+        }
+      }
     }
   }
 </style>

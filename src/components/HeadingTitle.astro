@@ -22,4 +22,10 @@ const { titleText } = Astro.props;
       background-color: var(--color-main);
     }
   }
+
+  @include mq() {
+    .c-heading-title {
+      font-size: 20px;
+    }
+  }
 </style>
