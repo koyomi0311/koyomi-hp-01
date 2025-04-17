@@ -337,11 +337,11 @@ const { logoWide, logoTall, navList, snsList } = Astro.props;
 
     .footer-links {
       flex-direction: row-reverse;
-      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      gap: clamp(26px, calc(40 var(--vw-pc)), 40px);
     }
 
     .footer-links-list {
-      gap: clamp(32px, calc(40 var(--vw-pc)), 40px);
+      gap: clamp(26px, calc(40 var(--vw-pc)), 40px);
       margin-top: 0;
     }
 
@@ -359,6 +359,7 @@ const { logoWide, logoTall, navList, snsList } = Astro.props;
         top: 0;
         bottom: 0;
         right: -20px;
+        right: clamp(-20px, calc(-20 var(--vw-pc)), -15px);
       }
       a {
         font-size: clamp(10px, calc(14 var(--vw-pc)), 14px);

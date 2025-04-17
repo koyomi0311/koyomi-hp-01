@@ -1,0 +1,133 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<!-- top -->
+<Layout
+  subTitle="404（ページが見つかりません）"
+  ogType="website"
+  description="お探しのページが見つかりませんでした。URLに誤りがあるか、ページが移動または削除された可能性があります。「koyomi yoga pilates」トップページから再度お探しください。"
+>
+  <!-- page-404 -->
+  <main class="page-404-main">
+    <div class="page-404">
+      <div class="page-404-bg">
+        <picture>
+          <source media="(max-width: 767px)" srcset="/public/assets/images/404/bg-404-sp@2x.jpg">
+          <source media="(min-width: 768px)" srcset="/public/assets/images/404/bg-404-pc@2x.jpg">
+          <img src="/public/assets/images/404/bg-404-sp@2x.jpg" alt="" loading="eager" decoding="async" width="800" height="800">
+        </picture>
+      </div>
+      <div class="page-404-container l-container-s">
+        <h1 class="page-404-heading">
+          <img src="/public/assets/images/404/text-404.svg" alt="404" loading="eager" decoding="async" width="464" height="183">
+        </h1>
+        <div class="page-404-description">
+          <p class="page-404-lead">お探しのページが見つかりませんでした。</p>
+          <p class="page-404-text">こちらのページは一時的にアクセスできない状況にあるか、移動もしくは消去された可能性があります。</p>
+        </div><!-- /.page-404-description -->
+      </div><!-- /.page-404-container.l-container-s -->
+    </div><!-- /.page-404 -->
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .page-404 {
+    width: 100%;
+    height: 800px;
+    margin-top: 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-404-bg {
+    width: 800px;
+    height: 800px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50%;
+  }
+
+  .page-404-container {
+    max-width: 350px;
+    height: 800px;
+    padding-top: 90px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .page-404-heading {
+    img {
+      width: 188px;
+      height: 80px;
+    }
+  }
+
+  .page-404-description {
+    display: grid;
+    gap: 5px;
+    margin-top: 27px;
+  }
+
+  .page-404-lead {
+  }
+
+  .page-404-text {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  @include mq() {
+    .page-404-main {
+      padding-bottom: clamp(105px, calc(135 / 1024 * 100vw), 135px);
+    }
+
+    .page-404 {
+      height: min(845px, calc(845 / 1024 * 100vw));
+      padding-bottom: min(100px, calc(100 / 1024 * 100vw));
+      margin-top: 0;
+    }
+
+    .page-404-bg {
+      width: min(2000px, calc(2000 / 1024 * 100vw));
+      height: min(845px, calc(845 / 1024 * 100vw));
+    }
+
+    .page-404-container {
+      max-width: calc(var(--width-content-s) + 40px * 2);
+      height: min(845px, calc(845 / 1024 * 100vw));
+      padding-top: min(265px, calc(265 / 1024 * 100vw));
+    }
+
+    .page-404-heading {
+      text-align: right;
+
+      img {
+        width: min(464px, calc(464 / 1024 * 100vw));
+        height: min(183px, calc(183 / 1024 * 100vw));
+      }
+    }
+
+    .page-404-description {
+      gap: min(20px, calc(20 / 1024 * 100vw));
+      width: min(432px, calc(432 / 1024 * 100vw));
+      margin: min(46px, calc(46 / 1024 * 100vw)) min(17px, calc(17 / 1024 * 100vw)) 0 auto;
+    }
+
+    .page-404-lead {
+      font-size: min(20px, calc(20 / 1024 * 100vw));
+    }
+
+    .page-404-text {
+      font-size: min(16px, calc(16 / 1024 * 100vw));
+      text-align: left;
+    }
+  }
+</style>

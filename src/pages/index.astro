@@ -10,13 +10,8 @@ import TopMenu from "../components/topPage/TopMenu.astro";
 import TopFlow from "../components/topPage/TopFlow.astro";
 import TopFaq from "../components/topPage/TopFaq.astro";
 import TopAccess from "../components/topPage/TopAccess.astro";
-
-import SectionTitle from "../components/SectionTitle.astro";
-import LessonTitle from "../components/LessonTitle.astro";
-import ButtonCta from "../components/ButtonCta.astro";
 import ContactSection from "../components/ContactSection.astro";
 
-// const logoWide = "/assets/images/global/logo-wide.svg";
 const logoTall = "/assets/images/global/logo-tall.svg";
 
 // 構造化データ生成関数
@@ -289,9 +284,14 @@ const jsonLd = JSON.stringify({
 <style lang="scss">
   @use '../styles/breakpoints' as *;
 
+  .top-main {
+    background-color: var(--color-base);
+  }
+
   // top-concept-bg
   .top-concept-bg {
     position: relative;
+    z-index: 1;
     overflow: hidden;
   }
 
@@ -326,6 +326,7 @@ const jsonLd = JSON.stringify({
     // top-contact-bg
     .top-contact-bg {
     position: relative;
+    z-index: 1;
     overflow: hidden;
   }
 

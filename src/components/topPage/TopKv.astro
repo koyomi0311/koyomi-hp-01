@@ -52,8 +52,7 @@ const { logoTall } = Astro.props;
       speed: 2000,
       rewind: true,
       arrows: false,
-      pagination: "splide__pagination top-kv-bg-pagination",
-      page: "splide__pagination__page top-kv-bg-page",
+      pagination: false,
     }).mount();
   });
 </script>
@@ -61,10 +60,11 @@ const { logoTall } = Astro.props;
 <style lang="scss">
   @use '../../styles/breakpoints' as *;
 
-    .top-kv {
+  .top-kv {
     width: 100%;
     height: calc(100vh - 48px);
     margin-top: 48px;
+    background-color: var(--color-base);
     position: relative;
   }
 
@@ -76,15 +76,6 @@ const { logoTall } = Astro.props;
       height: calc(100vh - 48px);
       object-fit: cover;
     }
-  }
-
-  // pagination
-  .top-kv-bg-pagination {
-
-  }
-
-  .top-kv-bg-page {
-
   }
 
   .top-kv-container {
@@ -210,12 +201,11 @@ const { logoTall } = Astro.props;
         &:hover {
           &::before {
           left: 30px;
-        }
+          }
 
-        &::after {
-          left: 30px;
-        }
-
+          &::after {
+            left: 30px;
+          }
         }
       }
     }
