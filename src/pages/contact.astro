@@ -1,0 +1,216 @@
+---
+import "../styles/splide.css";
+import Layout from "../layouts/Layout.astro";
+import Form from "../components/Form.astro";
+import ContactSection from "../components/ContactSection.astro";
+---
+
+<!-- page-contact -->
+<Layout
+  subTitle="お問い合わせ"
+  ogType="website"
+  description="所沢市の女性向けヨガ&ピラティス「koyomi yoga pilates」へのお問い合わせはこちらから。見学のお問い合わせやレッスンに関するご質問など、お気軽にご連絡ください（※ご予約は別ページより受け付けております）。"
+>
+  <!-- contact-kv -->
+  <div class="contact-kv">
+    <div class="contact-bg">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/assets/images/page-contact/bg-page-contact-sp@2x.png">
+        <source media="(min-width: 768px)" srcset="/assets/images/page-contact/bg-page-contact-pc@2x.png">
+        <img src="/assets/images/page-contact/bg-page-contact-sp@2x.png" alt="" loading="eager" decoding="async" width="800" height="250">
+      </picture>
+    </div><!-- /.contact-bg -->
+    <div class="contact-heading">
+      <h1 class="contact-heading-text">お問い合わせ</h1>
+      <img src="/public/assets/images/page-contact/text-page-contact-title.svg" alt="" loading="eager" decoding="async" width="170" height="47">
+    </div><!-- /.contact-heading -->
+  </div><!-- /.contact-kv -->
+
+  <!-- contactセクションbg設定 ここから -->
+  <div class="top-contact-bg">
+
+    <!-- contact-main -->
+    <main class="contact-main">
+      <div class="contact-container l-container-s">
+        <div class="contact-description">
+          <p class="contact-text">ご相談やご質問などお気軽にお問い合わせください。<br class="u-no-sp">下記のファームに必須項目をご入力頂き、「送信」ボタンを押してください。</p>
+          <small class="contact-note">※お問い合わせ内容によっては、数日お時間をいただく場合やお答えできない場合がございます。</small>
+        </div><!-- /.contact-description -->
+        <div class="contact-form">
+          <Form />
+        </div><!-- /.contact-form -->
+      </div><!-- /.contact-container l-container-s -->
+    </main>
+
+    <!-- contact-contact -->
+    <section class="contact-contact">
+      <ContactSection />
+    </section><!-- /.contact-contact -->
+
+    <!-- contactセクションbg -->
+    <div class="top-contact-bg-image"></div>
+  </div><!-- /.top-contact-bg -->
+  <!-- contactセクションbg設定 ここまで -->
+</Layout>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .contact-kv {
+    width: 100%;
+    height: 250px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-bg {
+    width: 800px;
+    height: 250px;
+    position: absolute;
+    top: -53px;
+    left: 50%;
+    translate: -50%;
+  }
+
+  .contact-heading {
+    display: flex;
+    flex-direction: column-reverse;
+    width: fit-content;
+    margin: auto;
+    position: absolute;
+    top: 51px;
+    right: 0;
+    left: 0;
+
+    img {
+      width: 62px;
+      height: 19px;
+    }
+  }
+
+  .contact-heading-text {
+    color: var(--color-base);
+    font-size: 10px;
+  }
+
+  .contact-main {
+    margin-top: -94px;
+  }
+
+  .contact-container {
+
+  }
+
+  .contact-description {
+    display: grid;
+    gap: 20px;
+  }
+
+  .contact-text {
+
+  }
+
+  .contact-note {
+    font-size: 12px;
+  }
+
+  .contact-form {
+    margin-top: 39px;
+  }
+
+  .contact-contact {
+    padding-bottom: 284px;
+    margin-top: 85px;
+  }
+
+  // top-contact-bg
+  .top-contact-bg {
+    padding-top: 100px;
+    margin-top: -100px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .top-contact-bg-image {
+    width: 800px;
+    height: 552px;
+    background-image: url(/assets/images/contact/bg-contact-sp@2x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+  }
+
+  @include mq() {
+    .contact-kv {
+      height: 570px;
+      margin-top: 0;
+    }
+
+    .contact-bg {
+      width: 2000px;
+      height: 570px;
+      position: absolute;
+      top: 0;
+    }
+
+    .contact-heading {
+      align-items: center;
+      gap: 9px;
+      top: 183px;
+
+      img {
+        width: 170px;
+        height: 47px;
+      }
+    }
+
+    .contact-heading-text {
+      font-size: 20px;
+    }
+
+    .contact-main {
+      margin-top: -66px;
+    }
+
+    .contact-container {
+
+    }
+
+    .contact-description {
+      gap: 10px;
+      width: fit-content;
+      margin: auto;
+    }
+
+    .contact-text {
+      font-size: 20px;
+    }
+
+    .contact-note {
+      font-size: 16px;
+    }
+
+    .contact-form {
+      margin-top: 60px;
+    }
+
+    .contact-contact {
+      padding-bottom: 275px;
+      margin-top: 181px;
+    }
+
+    // top-contact-bg
+    .top-contact-bg-image {
+      width: 2000px;
+      height: 680px;
+      background-image: url(/assets/images/contact/bg-contact-pc@2x.png);
+    }
+  }
+</style>
