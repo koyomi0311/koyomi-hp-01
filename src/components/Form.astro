@@ -68,6 +68,7 @@
 
   <div class="c-form-submit-button">
     <button type="submit" class="c-button-cta c-button-cta--contact" disabled>送信する</button>
+    <p class="c-form-submit-button-note">※すべての必須項目を入力し、プライバシーポリシーに同意すると、送信ボタンが有効になります。</p>
   </div><!-- /.c-form-submit-button -->
 </form>
 
@@ -141,8 +142,6 @@
 <style lang="scss">
   @use '../styles/_breakpoints.scss' as *;
 
-  /* component > c-form
-  ----------------------------------- */
   .c-form {
     font-size: 16px;
   }
@@ -346,6 +345,13 @@
     }
   }
 
+  .c-form-submit-button-note {
+    width: 280px;
+    margin: 16px auto 0;
+    font-size: 12px;
+    text-align: justify;
+  }
+
   // バリデーション用テキスト
   .c-form-error-message {
     color: var(--color-alert);
@@ -466,6 +472,12 @@
     .c-form-submit-button {
       margin-top: 60px;
     }
+
+  .c-form-submit-button-note {
+    width: 340px;
+    margin: 20px auto 0;
+    font-size: 14px;
+  }
 
     // バリデーション用テキスト
     .c-form-error-message {
