@@ -27,23 +27,10 @@ import SectionTitle from "./SectionTitle.astro";
 <style lang="scss">
   @use '../styles/breakpoints' as *;
 
-  .c-contact-section {
-  }
-
-  .c-contact-section-title {
-  }
-
-  .c-contact-section-section-body {
-  }
-
   .c-contact-section-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-
-  .c-contact-section-item {
-
   }
 
   .c-contact-section-link {
@@ -81,12 +68,6 @@ import SectionTitle from "./SectionTitle.astro";
   }
 
   @include mq() {
-    .c-contact-section {
-    }
-
-    .c-contact-section-title {
-    }
-
     .c-contact-section-section-body {
       margin-top: 65px;
     }
@@ -95,10 +76,6 @@ import SectionTitle from "./SectionTitle.astro";
       gap: 40px;
       max-width: 560px;
       margin: auto;
-    }
-
-    .c-contact-section-item {
-
     }
 
     .c-contact-section-link {
@@ -126,7 +103,6 @@ import SectionTitle from "./SectionTitle.astro";
     }
   }
 
-  // ホバーから再開！！！！！！！！！
   @media (any-hover: hover) {
     .c-contact-section-link {
       &:hover {
