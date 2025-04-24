@@ -60,16 +60,49 @@ const { logoWide, navList, snsList } = Astro.props;
     const hamburger = document.querySelector(".header-hamburger");
     const headerLinks = document.querySelector(".header-link");
     const navLinks = document.querySelectorAll(".header-link a");
+    const body = document.body;
+
+    let scrollY = 0; // スクロール位置の保存用
 
     hamburger.addEventListener("click", function () {
-      this.classList.toggle("active");
+      const isActive = this.classList.toggle("active");
       headerLinks.classList.toggle("active");
+
+      if (isActive) {
+        // 現在のスクロール位置を保存
+        scrollY = window.scrollY;
+
+        // body固定（見た目上スクロールさせない）
+        body.style.position = "fixed";
+        body.style.top = `-${scrollY}px`;
+        body.style.left = "0";
+        body.style.right = "0";
+        body.classList.add("no-scroll");
+      } else {
+        // 固定解除
+        body.style.position = "";
+        body.style.top = "";
+        body.style.left = "";
+        body.style.right = "";
+        body.classList.remove("no-scroll");
+
+        // スクロール位置を復元
+        window.scrollTo(0, scrollY);
+      }
     });
 
     navLinks.forEach(function (link) {
       link.addEventListener("click", function () {
         hamburger.classList.remove("active");
         headerLinks.classList.remove("active");
+
+        body.style.position = "";
+        body.style.top = "";
+        body.style.left = "";
+        body.style.right = "";
+        body.classList.remove("no-scroll");
+
+        window.scrollTo(0, scrollY);
       });
     });
   });
@@ -78,8 +111,8 @@ const { logoWide, navList, snsList } = Astro.props;
 <style lang="scss">
   @use '../../styles/breakpoints' as *;
 
-      // header
-      .header {
+  // header
+  .header {
     display: grid;
     align-items: center;
     width: 100%;
