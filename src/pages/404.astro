@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const noIndex = true;
 ---
 
 <!-- top -->
@@ -7,6 +9,7 @@ import Layout from "../layouts/Layout.astro";
   subTitle="404（ページが見つかりません）"
   ogType="website"
   description="お探しのページが見つかりませんでした。URLに誤りがあるか、ページが移動または削除された可能性があります。「koyomi yoga pilates」トップページから再度お探しください。"
+  {noIndex}
 >
   <!-- page-404 -->
   <main class="page-404-main">
