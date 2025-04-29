@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://koyomi-yoga.com/sitemap-index.xml
