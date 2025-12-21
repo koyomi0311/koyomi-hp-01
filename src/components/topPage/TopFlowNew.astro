@@ -1,0 +1,175 @@
+---
+import ButtonCta from "../ButtonCta.astro";
+---
+
+<section class="top-flow">
+  <div class="l-container-s">
+    <h2 class="top-flow-title">はじめての方へ</h2>
+    <div class="top-flow-section-body l-section-body">
+      <div class="top-flow-content">
+        <div class="top-flow-description">
+          <p class="top-flow-lead">初めての方には、レッスンの流れやスタジオの雰囲気を無理なく体験していただける機会をご用意しています。</p>
+          <dl class="top-flow-price">
+            <dt>体験レッスン：</dt>
+            <dd aria-label="はっせんはっぴゃくえん">8,800<span>円</span></dd>
+          </dl>
+        </div>
+        <div class="top-flow-image">
+          <img src="/assets/images/flow/pic-flow-private@2x.webp" alt="ピラティスマシンを使った丁寧なサポートを行う女性インストラクター" loading="lazy" decoding="async" width="493" height="356">
+        </div><!-- /.top-flow-image -->
+      </div><!-- /.top-flow-content -->
+      <div class="top-flow-cta">
+        <ButtonCta />
+      </div><!-- /.top-flow-cta -->
+    </div><!-- /.top-flow-section-body.l-section-body -->
+  </div><!-- /.l-container-s -->
+</section><!-- /.top-flow -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-flow {
+    margin-top: 60px;
+  }
+
+  .top-flow-title {
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 123px;
+      height: 15px;
+      margin: auto;
+      background-image: url(/assets/images/flow/image-flow-dec@2x.webp);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      position: absolute;
+      bottom: -25px;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  .top-flow-section-body {
+    margin-top: 56px;
+  }
+
+  .top-flow-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: auto;
+    line-height: 1.7;
+  }
+
+  .top-flow-description {
+
+  }
+
+  .top-flow-lead {
+
+  }
+
+  .top-flow-price {
+    display: flex;
+    width: fit-content;
+    margin: 20px auto;
+    font-size: 16px;
+
+    dt {
+
+    }
+
+    dd {
+      span {
+        margin-left: 2px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .top-flow-image {
+
+  }
+
+  .top-flow-cta {
+    width: fit-content;
+    margin: 40px auto 0;
+  }
+
+  @include mq() {
+    .top-flow {
+      margin-top: 80px;
+    }
+
+    .top-flow-title {
+      font-size: 20px;
+
+      &::after {
+        width: 174px;
+        height: 22px;
+        bottom: -32px;
+      }
+    }
+
+    .top-flow-section-body {
+      margin-top: 92px;
+    }
+
+
+    .top-flow-cta {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 1080px) {
+    .top-flow-list {
+      max-width: initial;
+    }
+
+    .top-flow-content {
+      flex-direction: row;
+      justify-content: space-between;
+      // align-items: center;
+      gap: 0;
+      max-width: initial;
+      margin: 0;
+    }
+
+    .top-flow-description {
+      width: 462px;
+      // margin-bottom: 12px;
+    }
+
+    .top-flow-lead {
+      font-size: 18px;
+    }
+
+    .top-flow-price {
+      margin: 40px auto;
+      font-size: 20px;
+
+      dt {
+
+      }
+
+      dd {
+        span {
+          margin-left: 2px;
+          font-size: 12px;
+        }
+      }
+    }
+
+
+    .top-flow-image {
+      img {
+        width: 493px;
+      }
+    }
+  }
+</style>
