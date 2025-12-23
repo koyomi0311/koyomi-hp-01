@@ -1,0 +1,201 @@
+---
+import ButtonCta from "../ButtonCta.astro";
+---
+
+<section class="top-trial">
+  <div class="l-container-s">
+    <h2 class="top-trial-title">はじめての方へ</h2>
+    <div class="top-trial-section-body l-section-body">
+      <div class="top-trial-content">
+        <div class="top-trial-description">
+          <p class="top-trial-lead">初めての方には、レッスンの流れやスタジオの雰囲気を無理なく体験していただける機会をご用意しています。</p>
+          <h3 class="top-trial-heading-lv3">体験レッスン</h3>
+          <div class="top-trial-price">
+            <dl class="top-trial-list">
+              <dt>プライベートレッスン　50分</dt>
+              <dd aria-label="はっせんはっぴゃくえん">8,800<span>円</span></dd>
+            </dl>
+            <dl class="top-trial-list">
+              <dt>グループレッスン　60分</dt>
+              <dd aria-label="さんぜんさんびゃくえん">3,300<span>円</span></dd>
+            </dl>
+          </div><!-- /.top-trial-price -->
+        </div><!-- /.top-trial-description -->
+        <div class="top-trial-image">
+          <img src="/assets/images/flow/pic-flow-private@2x.webp" alt="ピラティスマシンを使った丁寧なサポートを行う女性インストラクター" loading="lazy" decoding="async" width="493" height="356">
+        </div><!-- /.top-trial-image -->
+      </div><!-- /.top-trial-content -->
+      <div class="top-trial-cta">
+        <ButtonCta />
+      </div><!-- /.top-trial-cta -->
+    </div><!-- /.top-trial-section-body.l-section-body -->
+  </div><!-- /.l-container-s -->
+</section><!-- /.top-trial -->
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .top-trial {
+    margin-top: 60px;
+  }
+
+  .top-trial-title {
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 123px;
+      height: 15px;
+      margin: auto;
+      background-image: url(/assets/images/flow/image-flow-dec@2x.webp);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      position: absolute;
+      bottom: -25px;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  .top-trial-section-body {
+    margin-top: 56px;
+  }
+
+  .top-trial-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 500px;
+    margin: auto;
+    line-height: 1.7;
+  }
+
+  .top-trial-description {
+
+  }
+
+  .top-trial-lead {
+
+  }
+
+  .top-trial-heading-lv3 {
+    margin-top: 16px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .top-trial-price {
+    display: grid;
+    gap: 2px;
+    margin-top: 8px;
+  }
+
+  .top-trial-list {
+    display: flex;
+    gap: 1em;
+    width: fit-content;
+    margin: auto;
+    font-size: 16px;
+
+    dt {
+
+    }
+
+    dd {
+      span {
+        margin-left: 2px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .top-trial-image {
+
+  }
+
+  .top-trial-cta {
+    width: fit-content;
+    margin: 40px auto 0;
+  }
+
+  @include mq() {
+    .top-trial {
+      margin-top: 80px;
+    }
+
+    .top-trial-title {
+      font-size: 20px;
+
+      &::after {
+        width: 174px;
+        height: 22px;
+        bottom: -32px;
+      }
+    }
+
+    .top-trial-section-body {
+      margin-top: 92px;
+    }
+
+    .top-trial-cta {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 1080px) {
+    .top-trial-list {
+      max-width: initial;
+    }
+
+    .top-trial-content {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0;
+      max-width: initial;
+      margin: 0;
+    }
+
+    .top-trial-description {
+      width: 462px;
+    }
+
+    .top-trial-lead {
+      font-size: 18px;
+    }
+
+    .top-trial-heading-lv3 {
+      margin-top: 32px;
+      font-size: 22px;
+    }
+
+    .top-trial-price {
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .top-trial-list {
+      font-size: 18px;
+
+      dt {
+
+      }
+
+      dd {
+        span {
+          margin-left: 2px;
+          font-size: 14px;
+        }
+      }
+    }
+
+
+    .top-trial-image {
+      img {
+        width: 493px;
+      }
+    }
+  }
+</style>
