@@ -13,7 +13,7 @@ import ContactSection from "../components/ContactSection.astro";
 
 const logoTall = "/assets/images/global/logo-tall.svg";
 
-// 構造化データ生成関数
+// 構造化データ生成関数（フェーズ①：最小修正）
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "YogaStudio",
@@ -35,36 +35,11 @@ const jsonLd = JSON.stringify({
     "name": "koyomi yoga pilates"
   },
   "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Tuesday",
-      "opens": "09:00",
-      "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Wednesday",
-      "opens": "09:00",
-      "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Thursday",
-      "opens": "09:00",
-      "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "09:00",
-      "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:30",
-      "closes": "18:00"
-    }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "09:00", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:00", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:30", "closes": "18:00" }
   ],
   "sameAs": [
     "https://line.me/R/ti/p/@309upsyu?ts=03010941&oat_content=url",
@@ -87,36 +62,29 @@ const jsonLd = JSON.stringify({
       "name": "ヨガ・ピラティスレッスン予約"
     }
   },
+
+  // ★ここから：フェーズ①で改修した表示内容に合わせて最小修正
   "menu": [
     {
       "@type": "Menu",
-      "name": "グループレッスン",
-      "description": "同じ想いを持つ仲間と一緒に、心と身体をゆっくりほどく時間を過ごしませんか？",
+      "name": "体験レッスン",
+      "description": "体験レッスンは、プライベートレッスン 8,800円（税込）／グループレッスン 3,300円（税込）です。詳細はお問い合わせください。",
       "hasMenuItem": [
         {
           "@type": "MenuItem",
-          "name": "カウンセリング＋60分レッスン",
+          "name": "体験レッスン（プライベートレッスン）",
           "offers": {
             "@type": "Offer",
-            "price": 3500,
+            "price": 8800,
             "priceCurrency": "JPY"
           }
         },
         {
           "@type": "MenuItem",
-          "name": "4回券",
+          "name": "体験レッスン（グループレッスン）",
           "offers": {
             "@type": "Offer",
-            "price": 12800,
-            "priceCurrency": "JPY"
-          }
-        },
-        {
-          "@type": "MenuItem",
-          "name": "8回券",
-          "offers": {
-            "@type": "Offer",
-            "price": 24000,
+            "price": 3300,
             "priceCurrency": "JPY"
           }
         }
@@ -124,83 +92,103 @@ const jsonLd = JSON.stringify({
     },
     {
       "@type": "Menu",
-      "name": "プライベートレッスン",
-      "description": "誰にも気兼ねせず、自分のペースで進められる特別なレッスン。心と身体の状態に丁寧に向き合いながら、一人ひとりに合わせて必要なサポートをご提供します。",
+      "name": "グループレッスン（ヨガ／マットピラティス）",
+      "description": "同じ想いを持つ仲間と共に、心と身体をゆっくりほどく時間を過ごしませんか？",
       "hasMenuItem": [
         {
           "@type": "MenuItem",
-          "name": "カウンセリング＋姿勢チェック＋50分レッスン",
-          "offers": {
-            "@type": "Offer",
-            "price": 7500,
-            "priceCurrency": "JPY"
-          }
+          "name": "60分レッスン（都度払い）",
+          "offers": { "@type": "Offer", "price": 3500, "priceCurrency": "JPY" }
         },
         {
           "@type": "MenuItem",
           "name": "4回券",
-          "offers": {
-            "@type": "Offer",
-            "price": 28800,
-            "priceCurrency": "JPY"
-          }
+          "offers": { "@type": "Offer", "price": 12800, "priceCurrency": "JPY" }
         },
         {
           "@type": "MenuItem",
           "name": "8回券",
-          "offers": {
-            "@type": "Offer",
-            "price": 56000,
-            "priceCurrency": "JPY"
-          }
+          "offers": { "@type": "Offer", "price": 24000, "priceCurrency": "JPY" }
+        }
+      ]
+    },
+    {
+      "@type": "Menu",
+      "name": "プライベートレッスン（マシンピラティス）",
+      "description": "誰にも気兼ねせず、自分のペースで進められる特別なレッスン。心と身体の状態に丁寧に向き合いながら、一人ひとりに合わせて必要なサポートをご提供します。",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "50分レッスン（都度払い）",
+          "offers": { "@type": "Offer", "price": 13000, "priceCurrency": "JPY" }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "お手軽サブスク（月2回）",
+          "offers": { "@type": "Offer", "price": 18000, "priceCurrency": "JPY" }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "お手軽サブスク（月4回）",
+          "offers": { "@type": "Offer", "price": 34000, "priceCurrency": "JPY" }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "お手軽サブスク（月6回）",
+          "offers": { "@type": "Offer", "price": 49800, "priceCurrency": "JPY" }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "回数券（3回券）",
+          "offers": { "@type": "Offer", "price": 27600, "priceCurrency": "JPY" }
+        }
+      ]
+    },
+    {
+      "@type": "Menu",
+      "name": "セミパーソナルレッスン（マシンピラティス／ご案内制）",
+      "description": "お二人までの限られた環境で行う、質を大切にした上質なレッスン。一定の条件を満たした方へスタジオよりご案内する特別クラスです。ご希望のある方は、まずプライベートレッスンをご受講のうえスタッフまでご相談ください。",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "セミパーソナルレッスン（マシンピラティス／ご案内制）"
+          // 価格はHPに掲載しない方針のため、offers は付与しない
         }
       ]
     }
   ],
+  // ★ここまで：最小修正
+
+  // FAQ
   "mainEntity": [
     {
       "@type": "Question",
       "name": "服装について",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調整が可能です。"
-      },
+      "acceptedAnswer": { "@type": "Answer", "text": "動きやすい服装でお越しください。関節の動きが分かりやすいものを着用いただくと、よりスムーズに身体の調整が可能です。" },
       "inLanguage": "ja"
     },
     {
       "@type": "Question",
       "name": "駐車場・駐輪場について",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。"
-      },
+      "acceptedAnswer": { "@type": "Answer", "text": "提携の駐車場・駐輪場はございません。お手数ですが、近隣の施設をご利用ください。" },
       "inLanguage": "ja"
     },
     {
       "@type": "Question",
       "name": "持ちものについて",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。※マットやレッスンで使用するアイテムは、こちらでご用意しております。"
-      },
+      "acceptedAnswer": { "@type": "Answer", "text": "ウェア（上下）・お水（500ml〜1L）・タオルをお持ちください。※マットやレッスンで使用するアイテムは、こちらでご用意しております。" },
       "inLanguage": "ja"
     },
     {
       "@type": "Question",
       "name": "男性の入店について",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "施設は女性専用のため、男性のご入店はお断りしております。"
-      },
+      "acceptedAnswer": { "@type": "Answer", "text": "施設は女性専用のため、男性のご入店はお断りしております。" },
       "inLanguage": "ja"
     },
     {
       "@type": "Question",
       "name": "年齢制限について",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。"
-      },
+      "acceptedAnswer": { "@type": "Answer", "text": "中学生・高校生の方は、体験時のみ保護者の同伴が必要になります。2回目以降は、本人のみでレッスン可能です。" },
       "inLanguage": "ja"
     }
   ]
