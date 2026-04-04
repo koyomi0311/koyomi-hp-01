@@ -20,6 +20,9 @@ import ButtonCta from "../ButtonCta.astro";
               <dd aria-label="さんぜんさんびゃくえん">3,300<span>円</span></dd>
             </dl>
           </div><!-- /.top-trial-price -->
+          <h3 class="top-trial-heading-lv3">入会金</h3>
+          <p class="top-trial-text" aria-label="いちまんいっせんえん">11,000<span>円</span></p>
+          <p class="top-trial-note">※体験レッスン後3日以内のご入会で無料</p>
         </div><!-- /.top-trial-description -->
         <div class="top-trial-image">
           <img src="/assets/images/flow/pic-flow-private@2x.webp" alt="ピラティスマシンを使った丁寧なサポートを行う女性インストラクター" loading="lazy" decoding="async" width="493" height="356">
@@ -73,16 +76,8 @@ import ButtonCta from "../ButtonCta.astro";
     line-height: 1.7;
   }
 
-  .top-trial-description {
-
-  }
-
-  .top-trial-lead {
-
-  }
-
   .top-trial-heading-lv3 {
-    margin-top: 16px;
+    margin-top: 24px;
     font-size: 18px;
     text-align: center;
   }
@@ -100,10 +95,6 @@ import ButtonCta from "../ButtonCta.astro";
     margin: auto;
     font-size: 16px;
 
-    dt {
-
-    }
-
     dd {
       span {
         margin-left: 2px;
@@ -112,8 +103,19 @@ import ButtonCta from "../ButtonCta.astro";
     }
   }
 
-  .top-trial-image {
+  .top-trial-text {
+    margin-top: 8px;
+    font-size: 16px;
+    text-align: center;
 
+    span {
+        margin-left: 2px;
+        font-size: 12px;
+      }
+  }
+
+  .top-trial-note {
+    text-align: center;
   }
 
   .top-trial-cta {
@@ -179,18 +181,21 @@ import ButtonCta from "../ButtonCta.astro";
     .top-trial-list {
       font-size: 18px;
 
-      dt {
-
-      }
-
       dd {
         span {
-          margin-left: 2px;
           font-size: 14px;
         }
       }
     }
 
+    .top-trial-text {
+      margin-top: 12px;
+      font-size: 18px;
+
+      span {
+        font-size: 14px;
+      }
+    }
 
     .top-trial-image {
       img {
